@@ -6,7 +6,7 @@
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#0F766E" />
   <title>Privacy Policy · Privio</title>
-  <meta name="description" content="Privio Privacy Policy — your documents never leave your device. Erek Studio operates no servers and receives no data. The free version shows Google AdMob ads, which never receive your documents; Privio Pro removes ads entirely." />
+  <meta name="description" content="PDF Privio privacy: local documents, optional Firebase usage statistics, separate Firebase and Android ML Kit diagnostics." />
   <link rel="canonical" href="https://mustafasalimerek-bit.github.io/pdfprivio-legal/privacy/" />
   <style>
     :root {
@@ -200,139 +200,69 @@
       <span class="right"><a href="../">Home</a> · <a href="../terms/">Terms</a></span>
     </header>
 
-    <h1>Privacy Policy</h1>
+    <h1>PDF Privio Privacy Policy</h1>
 
-    <div class="meta">
-      <div><strong>Last updated:</strong> 2026-07-28</div>
-      <div><strong>Effective date:</strong> 2026-05-18</div>
-      <div><strong>Operator:</strong> Erek Studio (Mustafa Salim Erek, sole proprietor)</div>
-      <div><strong>Contact:</strong> <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a></div>
-      <div><strong>App:</strong> Privio for iOS and Android, bundle id <code>com.erekstudio.pdfprivio</code></div>
-    </div>
+    <p><strong>Last updated:</strong> 2026-10-18<br> <strong>Applies to:</strong> PDF Privio 1.1.4 (build 70) and later<br> <strong>Operator:</strong> Erek Studio (Mustafa Salim Erek, sole proprietor)<br> <strong>Contact:</strong> mustafasalimerek@gmail.com<br> <strong>App:</strong> PDF Privio for iOS and Android, <code>com.erekstudio.pdfprivio</code></p>
 
-    <p>This policy describes what data Privio does and does not collect. The short version is at the top.</p>
+    <h2>Your documents stay on your device</h2>
 
-    <div class="tldr">
-      <h2>TL;DR</h2>
-      <p><strong>Your documents never leave your device.</strong> Every PDF you scan, sign, redact, OCR, or convert is processed on your phone — whether you're on iPhone or Android. Erek Studio operates no servers, has no account system, and never receives your files, your OCR text, or your file names.</p>
-      <p><strong>The free version of Privio shows ads.</strong> Ads are served by Google AdMob, which collects advertising and device identifiers, approximate (IP-derived) location, and app- and ad-interaction data in order to show and measure ads. <strong>The ad system never receives your documents.</strong> Privio Pro removes ads entirely — when you are Pro, the ad SDK is not started at all and makes no requests.</p>
-      <p>Apart from ads, the only outbound activity is what <em>you</em> explicitly tap: the system share sheet (the iOS Share Sheet or the Android share menu) to send a finished PDF to another app, or an in-app purchase through Apple's App Store or Google Play.</p>
-    </div>
+    <p>PDF Privio processes PDFs, scans, signatures, form fields, OCR text, summaries and receipt information on your device. We do not send document content or file names to Erek Studio or Firebase. You can explicitly share or export a document to another app; that destination&#x27;s privacy policy then applies.</p>
 
-    <h2>1. What Privio does not collect</h2>
-    <p>This is the centerpiece of the product. Privio does not collect, transmit, or have any access to:</p>
-    <ul>
-      <li>The <strong>contents of your PDFs</strong> — text, images, signatures, tables, form fields, anything.</li>
-      <li><strong>OCR text</strong> extracted from your scans.</li>
-      <li><strong>PII Scan results</strong> — SSNs, IBANs, account numbers, credit card numbers, or any other sensitive pattern Privio detects locally in your documents.</li>
-      <li><strong>File names</strong> of the documents you open.</li>
-      <li><strong>Your contacts, calendar, location, microphone, or any other system data</strong> outside of the explicit per-feature permissions described in section 3.</li>
-      <li><strong>Product analytics.</strong> Privio does not include any product-analytics framework (Firebase Analytics, Mixpanel, Amplitude, etc.). We do not know how often you open the app, which tools you use, or how long your sessions are. The advertising SDK described in section 2.3 measures ads, not your use of the tools.</li>
-      <li><strong>Crash reports sent to us.</strong> Privio does not include a crash-reporting framework (Firebase Crashlytics, Sentry, Bugsnag, etc.). See sections 2.2 and 2.3 for the diagnostic data the platform and the ad SDK handle.</li>
-      <li><strong>Account data.</strong> Privio has no account system. You don't sign up, log in, or hand us any identifier.</li>
-    </ul>
-    <p>There are no servers operated by Erek Studio that receive your data, because there are no servers in this product. The advertising described in section 2.3 talks to Google's servers, never to ours, and never carries your documents.</p>
+    <p>PDF Privio has no ads, advertising SDK, account system or third-party crash-reporting SDK. It does include optional Google Analytics for Firebase to understand which parts of the app work well and where people stop before completing a task.</p>
 
-    <h2>2. What Privio actually does collect</h2>
-    <p>Strictly limited to what is unavoidable for the app to function on Apple's platform:</p>
+    <h2>1. Optional usage and purchase statistics</h2>
 
-    <h3>2.1 In-app purchases (Apple App Store / Google Play)</h3>
-    <p>If you upgrade to Privio Pro, the transaction is processed entirely by the platform's store — Apple's App Store on iOS, or Google Play on Android. The store shares a purchase/receipt token with the app so Privio can unlock paid features locally on your device. We never see your payment method, credit card number, billing address, Apple ID, or Google account.</p>
-    <p>The data each store itself collects during a purchase is governed by that store's own privacy policy: Apple — <a href="https://www.apple.com/legal/privacy/" rel="noopener">apple.com/legal/privacy</a>; Google — <a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a>.</p>
+    <p>Usage statistics are on by default. You can turn them off at any time in Settings → Privacy &amp; data → Share usage statistics. Turning them off does not change tool access, prices, purchases or document processing.</p>
 
-    <h3>2.2 Optional platform-level diagnostic sharing (controlled by you, not us)</h3>
-    <p>Both Apple and Google offer an operating-system toggle that, if <em>you</em> turn it on, lets the platform forward anonymous crash and performance reports for any app — including Privio — to a dashboard the developer can read in aggregate. Privio itself contains no crash or product-analytics SDK; this happens at the OS/store level, never inside the app.</p>
-    <ul>
-      <li><strong>iOS:</strong> <strong>Settings → Privacy &amp; Security → Analytics &amp; Improvements → Share with App Developers.</strong> Off by default. When on, Apple may share aggregate crash reports via App Store Connect.</li>
-      <li><strong>Android:</strong> <strong>Settings → Google → Usage &amp; diagnostics</strong> (plus the Play Store's equivalent). When on, Google may share aggregate crash/ANR and performance data (Android vitals) via the Play Console.</li>
-      <li>We do not control whether you have these on; the platform does.</li>
-      <li>The reports never include your file contents, file names, or any identifier we could link back to you personally.</li>
-      <li>You can turn either off at any time in your device settings without affecting how Privio works.</li>
-    </ul>
-    <h3>2.3 Advertising (free version only)</h3>
-    <p>The free version of Privio is supported by ads. Ads are served by <strong>Google AdMob</strong>, together with Google's User Messaging Platform (UMP) for consent. To show and measure an ad, Google collects and processes:</p>
-    <ul>
-      <li><strong>Advertising and device identifiers</strong> — the IDFA on iOS (only if you allow tracking, see below) and the Advertising ID on Android.</li>
-      <li><strong>Approximate location</strong>, derived from your IP address. Privio never requests your precise location and has no location permission.</li>
-      <li><strong>App and ad interaction data</strong> — that an ad was requested, shown, clicked, or completed.</li>
-      <li><strong>Diagnostic data</strong> about the ad SDK's own operation.</li>
-    </ul>
-    <p><strong>What the ad system never receives:</strong> your PDFs, the images you scan, OCR text, PII Scan results, file names, or anything else you create in Privio. The advertising SDK and the document pipeline share no data. This is the claim at the centre of the product, and adding ads did not change it.</p>
-    <p><strong>Your controls:</strong></p>
-    <ul>
-      <li><strong>iOS:</strong> the App Tracking Transparency dialog asks for your permission before the IDFA can be used. If you decline — or never answer — Privio still works and you still see ads, but they are non-personalised. You can change your answer any time in <strong>Settings → Privacy &amp; Security → Tracking</strong>.</li>
-      <li><strong>Android:</strong> you can reset or delete your Advertising ID in <strong>Settings → Google → Ads</strong>, and opt out of ad personalisation there.</li>
-      <li><strong>EEA, UK, Switzerland and certain US states:</strong> a Google-provided consent form appears before the first ad. You can reopen it from that form's "Manage options" to change or withdraw your choices.</li>
-      <li><strong>Remove ads entirely:</strong> buy Privio Pro. For a Pro user the ad SDK is never initialised, no ad request is made, and no consent or tracking prompt is shown.</li>
-    </ul>
-    <p>Google acts as an independent controller for this data. Its handling is governed by Google's own policies: <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">how Google uses data from apps that use its services</a> and <a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a>.</p>
-    <p>That is the entire list. There is nothing else.</p>
+    <p>When enabled, Firebase receives app lifecycle and session events, onboarding completion, the fixed tool selected, paywall entry point and dismissal, plan category (monthly, yearly or lifetime), purchase outcome and a fixed error category, restore outcome, a scan page-count range, export attempts and successful exports. The only app-defined user property is whether Pro is active. We never set a user ID.</p>
 
-    <h2>3. Permissions you may grant</h2>
-    <p>Privio asks for the following permissions only at the moment you use the relevant feature:</p>
-    <table>
-      <thead>
-        <tr><th>Permission</th><th>When asked</th><th>What we do with it</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Camera</strong></td>
-          <td>First time you open the document scanner</td>
-          <td>Capture pages in memory, hand them to the on-device scanner (Apple VisionKit on iOS, the on-device document scanner on Android) for cropping and enhancement, write the finished PDF to Privio's private storage. The camera is closed the moment the scan completes.</td>
-        </tr>
-        <tr>
-          <td><strong>Photos / Media</strong></td>
-          <td>First time you pick photos for image-to-PDF</td>
-          <td>Read only the photos you select. The system picker (iOS Photos, the Android photo picker) limits us to those specific images. They are processed in memory and the resulting PDF is written to Privio's private storage. The originals stay untouched.</td>
-        </tr>
-      </tbody>
-    </table>
-    <p>If you decline either permission, the corresponding feature is disabled but the rest of the app works normally.</p>
-    <p>We do not request location, contacts, microphone, calendar, motion, or any other permission Privio does not need.</p>
+    <p>Firebase also processes an app-instance identifier, app/device/OS information, IP-derived approximate location, and automatically measured in-app purchase/subscription events, which may include product ID, product name and price. These statistics are pseudonymous, not a promise of complete anonymity: the app-instance identifier can associate events from the same installation. We do not send your name, email address, display name, document names, file paths, document text, scanned receipt contents, signatures or scanned images.</p>
 
-    <h2>4. Storage on your device</h2>
-    <p>Privio writes the following files inside its private app storage (the iOS sandbox, or the Android app-private directory) — readable only by Privio and by you through the system file manager (the iOS Files app, or the Android Files / Downloads UI):</p>
-    <ul>
-      <li>Output PDFs you generate — kept until you delete them or uninstall the app.</li>
-      <li>Tool preferences (paper size, signature font, display name, theme, etc.) via the platform's local key-value store (UserDefaults on iOS, SharedPreferences on Android).</li>
-      <li>A small local database (Hive) for things like recent files and the optional audit log.</li>
-      <li>A temporary cache of rasterised page images during OCR / redaction, cleared automatically when you leave a tool.</li>
-    </ul>
-    <p>None of these ever leave your device unless you explicitly tap <strong>Share</strong> inside Privio. The system share sheet (the iOS Share Sheet, or the Android share menu) then sends the file to whatever app you pick (Mail, Files, AirDrop, Drive, etc.). What that destination app does with the file is governed by that app's own privacy policy, not ours.</p>
+    <p>Advertising storage, advertising user data and ad personalization consent are denied. iOS IDFA and IDFV collection, Android advertising ID and SSAID collection, automatic screen reporting and iOS advertising-network registration are disabled. No App Tracking Transparency prompt is shown. No document upload is needed to use any tool.</p>
 
-    <h2>5. Children's privacy</h2>
-    <p>Privio is a document utility for adults and is not directed at children under 13. We do not knowingly collect personal information from children, and Erek Studio itself holds no user data at all. Privio is not enrolled in Google Play's Designed for Families programme and is not intended for child-directed use; the advertising described in section 2.3 is therefore not configured for a child audience. If you believe a child has used Privio in a way that needs your attention, contact us at <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a>.</p>
+    <p>Statistics go to Google/Firebase over encrypted connections. Erek Studio uses the resulting reports only to evaluate app use and the purchase/export funnel. We do not sell this data or use it for advertising. Google processes data under its applicable terms and privacy documentation: https://firebase.google.com/support/privacy and https://policies.google.com/privacy.</p>
 
-    <h2>6. Your rights (GDPR / CCPA / similar regimes)</h2>
-    <p>You have the right to:</p>
-    <ul>
-      <li>Know what personal data <em>we</em> hold about you. <strong>The answer is: none.</strong> Erek Studio operates no servers and receives no data from the app.</li>
-      <li>Have us delete it. <strong>There is nothing on our side to delete.</strong> For the advertising data held by Google, use Google's own controls, linked in section 2.3.</li>
-      <li>Withdraw consent for advertising. In the EEA, UK, Switzerland and certain US states, reopen the Google consent form from its <strong>"Manage options"</strong> link. On iOS you can also revoke tracking in <strong>Settings → Privacy &amp; Security → Tracking</strong>; on Android, reset or delete your Advertising ID in <strong>Settings → Google → Ads</strong>. Buying Privio Pro stops all ad requests permanently.</li>
-      <li>Lodge a complaint with your local data protection authority if you believe we are mishandling your data.</li>
-    </ul>
-    <p>If you'd still like a written confirmation of "Erek Studio holds no data about you" for your own records, email <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a> and we will respond in writing within 30 days.</p>
+    <h2>2. Purchases and platform diagnostics</h2>
 
-    <h2>7. Sale and sharing of data</h2>
-    <p>Erek Studio does not sell personal information, and never has. We hold none to sell.</p>
-    <p>However, under the California CCPA/CPRA — and comparable US state laws — showing personalised ads can count as <strong>"sharing" personal information for cross-context behavioural advertising</strong>. The advertising identifiers and ad-interaction data described in section 2.3 are made available to Google for that purpose in the free version of the app.</p>
-    <p>To opt out: in covered US states the Google consent form appears in-app and lets you decline; on iOS, decline the App Tracking Transparency prompt; on Android, enable "Opt out of Ads Personalisation" in <strong>Settings → Google → Ads</strong>. Buying Privio Pro removes ads entirely, which ends the sharing. <strong>Your documents are never part of this, under any tier.</strong></p>
+    <p>Apple&#x27;s App Store or Google Play processes payments and provides purchase/receipt information to the app to unlock Pro locally. We do not receive payment-card details, billing addresses, Apple IDs or Google account identities. With usage statistics enabled, purchase outcomes and Firebase&#x27;s automatic purchase measurements also reach Analytics as described above.</p>
 
-    <h2>8. International transfers</h2>
-    <p>Erek Studio transfers no user data anywhere, because it receives none. The advertising described in section 2.3 is processed by Google on its own global infrastructure, under Google's privacy policy and transfer safeguards. Apple's and Google's separate handling of store purchase data is likewise governed by their own privacy policies.</p>
+    <p>Apple and Google may separately provide crash, ANR or performance reports under their own OS/store sharing settings. PDF Privio does not include Crashlytics, Firebase Performance or another third-party crash-reporting SDK. Those platform settings are separate from PDF Privio&#x27;s usage-statistics toggle.</p>
 
-    <h2>9. Security</h2>
-    <p>There is no central database, no cloud backup of your PDFs, no server operated by us that could be breached, and no third party that holds your documents. The standard SaaS data-breach risk does not apply to Privio's design.</p>
-    <p>Your files live in Privio's private app storage (the iOS sandbox, or the Android app-private directory), which the operating system encrypts as long as you have a device passcode or screen lock set. Set one.</p>
+    <h3>Firebase technical diagnostics</h3>
 
-    <h2>10. Changes to this policy</h2>
-    <p>If we ever change Privio's data practices, we will rewrite this policy, post the new version under the same URL, and update the "Last updated" date at the top. Material changes will be noted in the in-app <strong>What's New</strong> of the next update.</p>
+    <p>The app sets Firebase&#x27;s global data-collection default to off, separately from explicitly enabling Analytics when usage statistics are on. This reduces unnecessary Firebase Core heartbeat collection. It is not a universal network-off switch: Firebase Installations may still process installation identifiers and technical SDK/device information, including diagnostic user-agent or heartbeat information, to provide and maintain Firebase services. Such technical diagnostics are separate from optional Analytics and may occur even when usage statistics are off. We do not promise that the usage-statistics switch disables all Google SDK diagnostics.</p>
 
-    <h2>11. Contact</h2>
-    <ul>
-      <li>Email: <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a></li>
-    </ul>
-    <p>We respond to all good-faith privacy questions within 30 days.</p>
+    <h3>Google ML Kit diagnostics on Android</h3>
+
+    <p>Android OCR and the document scanner use Google ML Kit. Pages and recognized text are processed on the device; documents are not uploaded. ML Kit separately sends Google library diagnostic and usage data, including app/device information, installation or device identifiers, feature/API configuration, input/output sizes, latency and error categories. Erek Studio does not receive these ML Kit reports. This collection is separate from Firebase Analytics and is not disabled by the usage-statistics switch. Google&#x27;s disclosure is at https://developers.google.com/ml-kit/android-data-disclosure and its privacy policy is at https://policies.google.com/privacy. On iOS, the app&#x27;s scanning and OCR call Apple&#x27;s VisionKit and Vision frameworks instead.</p>
+
+    <h2>3. Permissions</h2>
+
+    <p>Camera access is used when you scan pages. The system document/photo picker grants access to the files or photos you select. Scanning and editing happen on the device. PDF Privio does not request location, contacts, microphone or advertising-tracking permissions. Approximate location in Analytics is derived from network addresses, not GPS or a location permission.</p>
+
+    <h2>4. Local storage</h2>
+
+    <p>PDF Privio stores generated files, preferences, recent-file references, the audit log, expense ledger and temporary processing files in app storage. These document-related records are not sent to Analytics. They remain until you delete them, the app clears temporary files, or the app is uninstalled, subject to the operating system&#x27;s backup and storage behavior. A display name entered in Settings is used only for the local greeting.</p>
+
+    <p>The usage-statistics preference is saved locally and applied at startup. Turning statistics off stops future Analytics collection; it does not automatically delete statistics already received by Google.</p>
+
+    <h2>5. Retention, deletion and your rights</h2>
+
+    <p>Usage statistics are retained under the Google Analytics property&#x27;s retention settings. You can stop future collection with the in-app toggle. For information, access, correction, objection or deletion requests, contact mustafasalimerek@gmail.com. We do not collect an account identity and may be unable to locate particular pseudonymous event records without additional information. Do not send us documents or sensitive content with a request. You may also complain to your local data-protection authority.</p>
+
+    <p>Deleting documents in PDF Privio affects their local copies. Files you shared to another app must be managed with that destination. Store transaction retention and deletion are controlled by Apple or Google under their own policies.</p>
+
+    <h2>6. International processing and security</h2>
+
+    <p>Google/Firebase may process statistics outside your country under its applicable data-processing terms. Documents are processed locally; Erek Studio does not maintain a cloud document database. Network statistics use encrypted transport, but no system can promise absolute security. Protect your device with a passcode or screen lock.</p>
+
+    <h2>7. Children</h2>
+
+    <p>PDF Privio is not directed at children under 13. Contact us if you believe information about a child requires attention. The usage-statistics toggle is available without creating an account.</p>
+
+    <h2>8. Policy changes and contact</h2>
+
+    <p>We will update this policy when data practices change. This version adds optional Firebase Analytics while keeping document processing local, preserves the Android ML Kit diagnostics disclosure, and explains separate Firebase technical diagnostics. Contact mustafasalimerek@gmail.com with privacy questions; we aim to respond within 30 days.</p>
 
     <footer class="site">
       <p>© 2026 Erek Studio · <a href="../">Privio</a> · <a href="../terms/">Terms of Service</a></p>
