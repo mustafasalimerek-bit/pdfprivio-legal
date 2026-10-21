@@ -268,6 +268,11 @@
     </details>
 
     <details>
+      <summary>Can I fill USCIS and other scripted government forms?</summary>
+      <p>Partly. Fill form fills standard PDF form fields — text boxes, checkboxes, radio buttons and choice lists. It does not run the JavaScript that some forms rely on, USCIS forms among them, and it respects a field's read-only flag. On those forms, fields that the form's script would unlock stay read-only, values the script would copy elsewhere (such as an A-Number repeated in page headers) are not copied, and flattening can remove a 2D barcode the script would generate. For such forms, use a PDF reader that runs form scripts.</p>
+    </details>
+
+    <details>
       <summary>Receipt scanner extracted the wrong total / date / vendor.</summary>
       <p>Receipt parsing uses on-device OCR plus regex heuristics — fast and private, but it can miss things on unusual formats. Every field is editable before you tap Save, and the original PDF stays untouched. If a specific receipt format reliably fails for you, email a redacted screenshot and I will tune the parser for that format in the next update.</p>
     </details>
