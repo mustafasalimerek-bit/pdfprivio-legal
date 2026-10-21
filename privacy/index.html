@@ -6,7 +6,7 @@
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#0F766E" />
   <title>Privacy Policy · Privio</title>
-  <meta name="description" content="PDF Privio privacy: local documents, optional Firebase usage statistics, separate Firebase and Android ML Kit diagnostics." />
+  <meta name="description" content="PDF Privio privacy policy: documents are processed on your device; every network connection the app makes, optional Firebase usage statistics, the on-device audit log and temporary files." />
   <link rel="canonical" href="https://mustafasalimerek-bit.github.io/pdfprivio-legal/privacy/" />
   <style>
     :root {
@@ -202,67 +202,123 @@
 
     <h1>PDF Privio Privacy Policy</h1>
 
-    <p><strong>Last updated:</strong> 2026-10-18<br> <strong>Applies to:</strong> PDF Privio 1.1.4 (build 70) and later<br> <strong>Operator:</strong> Erek Studio (Mustafa Salim Erek, sole proprietor)<br> <strong>Contact:</strong> mustafasalimerek@gmail.com<br> <strong>App:</strong> PDF Privio for iOS and Android, <code>com.erekstudio.pdfprivio</code></p>
+    <div class="meta">
+      <div><strong>Last updated:</strong> 2026-10-XX</div>
+      <div><strong>Applies to:</strong> PDF Privio 1.1.4 (build 70) and later, on iOS and Android</div>
+      <div><strong>Operator:</strong> Erek Studio (Mustafa Salim Erek, sole proprietor)</div>
+      <div><strong>Contact:</strong> <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a></div>
+      <div><strong>App:</strong> PDF Privio (shown on the home screen as “Privio”), <code>com.erekstudio.pdfprivio</code></div>
+    </div>
 
-    <h2>Your documents stay on your device</h2>
+    <div class="tldr">
+      <h2>Summary</h2>
+      <ul>
+        <li><strong>Your documents are processed on your device.</strong> There is no Erek Studio server and no account. The app has no feature that uploads document content: your PDFs, page images, recognized text, signatures, form entries, redaction search terms and receipt details are not sent to Erek Studio, to Firebase or to any other service, unless you share or export them yourself or use an Apple feature such as Visual Look Up (section 1.2).</li>
+        <li><strong>The app does make some network connections of its own.</strong> Section 1 lists them: App Store or Google Play purchase checks each time the app starts, optional usage statistics through Google Analytics for Firebase (on by default, off in Settings), Firebase technical diagnostics, and on Android, Google’s ML Kit diagnostics. None of them contains document content or file names.</li>
+        <li><strong>No ads and no tracking.</strong> There is no advertising SDK, no access to your advertising identifier, no App Tracking Transparency prompt and no third-party crash-reporting SDK.</li>
+        <li><strong>Privio keeps an audit log on your device</strong> — one entry per tool run, with file names, sizes, a partial file hash and the tool’s settings (section 4.3). It does not leave the device unless you export it.</li>
+      </ul>
+    </div>
 
-    <p>PDF Privio processes PDFs, scans, signatures, form fields, OCR text, summaries and receipt information on your device. We do not send document content or file names to Erek Studio or Firebase. You can explicitly share or export a document to another app; that destination&#x27;s privacy policy then applies.</p>
+    <h2 id="network">1. Network connections</h2>
+    <p>This list is drawn from the app’s source code and from the documentation of the software development kits (SDKs) it includes. It is not the result of an independent network audit.</p>
 
-    <p>PDF Privio has no ads, advertising SDK, account system or third-party crash-reporting SDK. It does include optional Google Analytics for Firebase to understand which parts of the app work well and where people stop before completing a task.</p>
+    <h3>1.1 Connections made without a tap from you</h3>
+    <ul>
+      <li><strong>App Store or Google Play purchase checks.</strong> Each time the app starts, it asks the store whether purchases are available, loads the prices of the three Pro products and quietly restores your purchases, so Pro stays active after a reinstall or on a new device. Buying or restoring Pro also goes through the store. These requests are made by Apple’s StoreKit or Google Play Billing and contain no document content. Erek Studio runs no receipt-validation server and never receives your payment card, billing address, Apple ID or Google account.</li>
+      <li><strong>Usage statistics (Google Analytics for Firebase).</strong> On by default; turn them off in <strong>Settings → Privacy &amp; data → Share usage statistics</strong>. What they contain is listed in section 2.</li>
+      <li><strong>Firebase technical diagnostics.</strong> The Firebase SDK can contact Google to register and maintain the app installation (Firebase Installations). This involves an installation identifier and technical SDK and device information, and it can happen even when usage statistics are off. The in-app switch is not a promise that all Google SDK traffic stops.</li>
+      <li><strong>Google ML Kit diagnostics (Android only).</strong> On Android, OCR and the document scanner use Google ML Kit, which processes your pages on the device. ML Kit separately sends Google diagnostic and usage data about the library: device information (manufacturer, model, OS version), the app’s package name and version, an installation or device identifier, performance metrics such as latency, API configuration such as image format and resolution, input and output sizes, and event and error codes. Google’s disclosure lists metadata of this kind; it does not list page images or recognized text. Erek Studio does not receive these reports, and the usage-statistics switch does not turn them off. Google’s disclosure: <a href="https://developers.google.com/ml-kit/android-data-disclosure" rel="noopener">developers.google.com/ml-kit/android-data-disclosure</a>.</li>
+      <li><strong>Document scanner module (Android only).</strong> The Android scanner is supplied by Google Play services, which may download the scanner module the first time you use it.</li>
+      <li><strong>Store rating prompt.</strong> If you have Pro, after at least three successful tool runs and two days after installation, the app may ask the App Store or Google Play to show the system rating prompt — at most once every 90 days. The store decides whether anything is shown.</li>
+    </ul>
 
-    <h2>1. Optional usage and purchase statistics</h2>
+    <h3>1.2 Connections made only when you tap</h3>
+    <ul>
+      <li><strong>Share, Open in, Save and Export.</strong> The system share sheet or file picker hands the file to the app or place you choose (Mail, Files, AirDrop, Google Drive and so on). That destination’s privacy policy then applies.</li>
+      <li><strong>Links.</strong> Privacy Policy, Terms, Manage subscription, the store page and Redeem code open in your browser or store app. Contact Support opens your mail app with a draft that includes the app version, build number and platform (iOS or Android); nothing is sent until you send the email.</li>
+      <li><strong>Apple features in the Live Text view (iOS only).</strong> The Live Text view uses Apple’s Quick Look viewer. Apple features inside it, such as Visual Look Up, are operated by Apple and may send Apple limited information when you use them, under <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple’s privacy policy</a>.</li>
+      <li><strong>Files stored in the cloud.</strong> If you pick a file kept in iCloud Drive, Google Drive or another provider, that provider may download it to your device.</li>
+    </ul>
 
-    <p>Usage statistics are on by default. You can turn them off at any time in Settings → Privacy &amp; data → Share usage statistics. Turning them off does not change tool access, prices, purchases or document processing.</p>
+    <h3>1.3 What happens on the device</h3>
+    <p>Scanning, OCR, redaction, signing, form filling, comparing, the sensitive-data scan, receipt extraction and every other tool process your documents on the device. Summaries use Apple’s on-device model through the Foundation Models framework (iOS 26 or later; not available on Android). The app does not download fonts.</p>
 
-    <p>When enabled, Firebase receives app lifecycle and session events, onboarding completion, the fixed tool selected, paywall entry point and dismissal, plan category (monthly, yearly or lifetime), purchase outcome and a fixed error category, restore outcome, a scan page-count range, export attempts and successful exports. The only app-defined user property is whether Pro is active. We never set a user ID.</p>
+    <h2 id="statistics">2. Usage statistics</h2>
+    <p>Usage statistics are on by default. You can turn them off at any time in <strong>Settings → Privacy &amp; data → Share usage statistics</strong>. Turning them off does not change tool access, prices, purchases or document processing. It stops future Analytics collection; it does not delete statistics Google has already received.</p>
+    <p>When they are on, the app sends Google Analytics for Firebase these events and no others: onboarding completed; tool opened, with the tool’s name from a fixed list; paywall shown, with where it was opened from (and the tool, if any); paywall closed, with whether a purchase was made; purchase started and its outcome, with the plan (monthly, yearly or lifetime), the result (success, cancelled, pending or failed) and a fixed error category; restore outcome, with the type of purchase found; scan completed, with a page-count range (1, 2–5, 6–20 or 21+); export tapped, with the tool; and export completed, with the tool and the output type (PDF, image, text or other). The only user property the app sets is whether Pro is active. The app never sets a user ID.</p>
+    <p>Firebase also records its own automatic events, such as first open, session start and in-app purchases (which can include the product ID, product name and price), together with an app-instance identifier, app, device and OS information, and an approximate location derived from your IP address. On Android, Firebase can also read the Google Play install referrer — the store campaign or source that led to the installation, if any. These statistics are pseudonymous, not anonymous: the app-instance identifier links events from the same installation. They never include your name, email address, document names, file paths, document text, receipt contents, signatures or images.</p>
+    <p>Advertising storage, advertising user data and ad-personalization consent are set to denied. Collection of the iOS IDFA and IDFV and the Android Advertising ID and SSAID, automatic screen reporting and iOS ad-network registration are disabled. No App Tracking Transparency prompt is shown.</p>
+    <p>Erek Studio uses the reports only to see how the app is used and where people stop before finishing a task or a purchase. We do not sell this data or use it for advertising. Google processes it under its own terms: <a href="https://firebase.google.com/support/privacy" rel="noopener">firebase.google.com/support/privacy</a> and <a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a>.</p>
 
-    <p>Firebase also processes an app-instance identifier, app/device/OS information, IP-derived approximate location, and automatically measured in-app purchase/subscription events, which may include product ID, product name and price. These statistics are pseudonymous, not a promise of complete anonymity: the app-instance identifier can associate events from the same installation. We do not send your name, email address, display name, document names, file paths, document text, scanned receipt contents, signatures or scanned images.</p>
+    <h2 id="permissions">3. Permissions</h2>
+    <ul>
+      <li><strong>Camera (iOS).</strong> Requested the first time you scan. Apple’s VisionKit document camera captures the pages and the finished PDF is written to the app’s storage. On Android, the scanner runs inside Google Play services and Privio does not hold the camera permission itself.</li>
+      <li><strong>Photos and files.</strong> The system photo and document pickers give the app only the items you select.</li>
+    </ul>
+    <p>The app does not request location, contacts, microphone, calendar or tracking permissions. The approximate location in usage statistics comes from your IP address, not from GPS or a location permission.</p>
 
-    <p>Advertising storage, advertising user data and ad personalization consent are denied. iOS IDFA and IDFV collection, Android advertising ID and SSAID collection, automatic screen reporting and iOS advertising-network registration are disabled. No App Tracking Transparency prompt is shown. No document upload is needed to use any tool.</p>
+    <h2 id="storage">4. What is stored on your device</h2>
 
-    <p>Statistics go to Google/Firebase over encrypted connections. Erek Studio uses the resulting reports only to evaluate app use and the purchase/export funnel. We do not sell this data or use it for advertising. Google processes data under its applicable terms and privacy documentation: https://firebase.google.com/support/privacy and https://policies.google.com/privacy.</p>
+    <h3>4.1 Your files</h3>
+    <ul>
+      <li><strong>Saved results.</strong> When you save, share or export a result (Pro), it is written to the app’s Documents folder. On iOS that folder is visible in the Files app under <strong>On My iPhone</strong> (or <strong>On My iPad</strong>) <strong>→ Privio</strong>. On Android it is the app’s private storage.</li>
+      <li><strong>Results you have not saved.</strong> A tool’s result first goes to a private staging folder that the Files app does not show. If you never save, share or export it, it is deleted the next time the app starts, once it is more than 24 hours old.</li>
+      <li><strong>Files shared into Privio (iOS).</strong> A file you send to Privio from another app through the share sheet is copied into the <strong>Imported</strong> folder inside Documents and stays there until you delete it.</li>
+    </ul>
 
-    <h2>2. Purchases and platform diagnostics</h2>
+    <h3 id="temporary-files">4.2 Temporary files</h3>
+    <p>While a tool runs, Privio writes page images to the app’s private temporary folder — for example, every page rendered as a JPEG for OCR or redaction. The system file picker also puts a copy of each file you pick into the app’s private temporary or cache folder.</p>
+    <ul>
+      <li>Page images made for redaction and for text recognition are deleted when the operation ends — whether it finishes, fails or is cancelled.</li>
+      <li>They stay behind, until the operating system clears the temporary folder, if the app crashes or is force-quit during the operation, or if you cancel the OCR PDF tool, or leave its screen, while it is still rendering pages.</li>
+      <li>Two kinds of temporary file are not deleted by the app in this version; the operating system removes them when it clears the folder: the image of a PDF receipt’s first page, made when you import a receipt from a PDF, and the copies the system file picker makes of the files you pick.</li>
+    </ul>
+    <p>The temporary folder is inside the app’s sandbox, is not shown in the Files app and is not included in device backups.</p>
 
-    <p>Apple&#x27;s App Store or Google Play processes payments and provides purchase/receipt information to the app to unlock Pro locally. We do not receive payment-card details, billing addresses, Apple IDs or Google account identities. With usage statistics enabled, purchase outcomes and Firebase&#x27;s automatic purchase measurements also reach Analytics as described above.</p>
+    <h3 id="audit-log">4.3 Audit log</h3>
+    <p>Privio writes an audit-log entry automatically each time most tools finish a run. In this version there is no setting to turn it off. The log stays on your device; you can view it, export it as a CSV file or clear it in <strong>Settings → Privacy &amp; data → Audit log</strong>.</p>
+    <p>Each entry records:</p>
+    <ul>
+      <li>the date and time (UTC), the tool, and whether the run succeeded;</li>
+      <li>the input file’s name and size, and the first 16 hexadecimal characters of a SHA-256 hash of the input file’s first 1&nbsp;MB;</li>
+      <li>the output file’s name and size;</li>
+      <li>the tool’s settings and counts — for example the Bates prefix and start number, the signer name, the names of up to ten merged files, the watermark text, page ranges, the number of redaction search terms and matches, the number of sensitive-data findings per category, the length of a password you set, the currency and category of a saved receipt, and page, character or field counts.</li>
+    </ul>
+    <p>The log never records redaction search terms, passwords or the text of your documents. Entries are kept for 90 days, up to a maximum of 5,000 entries; older entries are removed when the app starts. The Compare and Bookmarks tools do not write entries.</p>
+    <p>The audit log and the receipt ledger are stored as database files in the app’s Documents folder. On iOS that folder is visible in the Files app, so these files appear there too and can be copied like any other file.</p>
 
-    <p>Apple and Google may separately provide crash, ANR or performance reports under their own OS/store sharing settings. PDF Privio does not include Crashlytics, Firebase Performance or another third-party crash-reporting SDK. Those platform settings are separate from PDF Privio&#x27;s usage-statistics toggle.</p>
+    <h3>4.4 Other data on the device</h3>
+    <ul>
+      <li><strong>Preferences</strong> such as your display name (used only for the greeting on the home screen), language and the usage-statistics switch, in the platform’s local key-value store.</li>
+      <li><strong>Recent files:</strong> names and locations of recent files, for the Recent tab.</li>
+      <li><strong>Home-screen widget:</strong> if you add Privio’s widget, it shows the names of your three most recent files, with the tool and time. You can hide the names in <strong>Settings → Personalization → Widget privacy</strong>.</li>
+      <li><strong>Expense ledger:</strong> the receipt fields you save (date, vendor, total, currency, category and note).</li>
+      <li><strong>Purchase state:</strong> a cached “Pro active” flag and the plan type, so the app knows your status before the store answers.</li>
+    </ul>
 
-    <h3>Firebase technical diagnostics</h3>
+    <h3>4.5 Backups and device security</h3>
+    <p>The app’s Documents folder and its other app data are included in your device backups — iCloud Backup or a computer backup on iOS, Android’s device backup on Android — if you back up your device. Privio does not opt out of these backups. Both iOS and Android encrypt app storage on a device protected by a passcode or screen lock; set one.</p>
 
-    <p>The app sets Firebase&#x27;s global data-collection default to off, separately from explicitly enabling Analytics when usage statistics are on. This reduces unnecessary Firebase Core heartbeat collection. It is not a universal network-off switch: Firebase Installations may still process installation identifiers and technical SDK/device information, including diagnostic user-agent or heartbeat information, to provide and maintain Firebase services. Such technical diagnostics are separate from optional Analytics and may occur even when usage statistics are off. We do not promise that the usage-statistics switch disables all Google SDK diagnostics.</p>
+    <h2>5. Platform diagnostics</h2>
+    <p>Apple and Google may separately provide crash, ANR (app not responding) or performance reports under their own operating-system and store settings — on iOS, <strong>Settings → Privacy &amp; Security → Analytics &amp; Improvements → Share with App Developers</strong>; on Android, Google’s usage and diagnostics setting. PDF Privio does not include Crashlytics, Firebase Performance or any other third-party crash-reporting SDK. These platform settings are separate from Privio’s usage-statistics switch.</p>
 
-    <h3>Google ML Kit diagnostics on Android</h3>
+    <h2>6. Retention, deletion and your rights</h2>
+    <p>Erek Studio holds no copy of your documents, your audit log or your other on-device data. Deleting files in Privio, clearing the audit log or uninstalling the app removes the local copies; files you shared to another app, and copies in your backups, must be managed there.</p>
+    <p>Usage statistics are kept for the period set in the Google Analytics property’s data-retention setting. For information, access, correction, objection or deletion requests, contact <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a>. Because we do not collect an account identity, we may be unable to locate particular pseudonymous event records without more information. Do not send us documents or sensitive content with a request. You may also complain to your local data-protection authority.</p>
+    <p>Store transaction records are kept and deleted by Apple or Google under their own policies.</p>
 
-    <p>Android OCR and the document scanner use Google ML Kit. Pages and recognized text are processed on the device; documents are not uploaded. ML Kit separately sends Google library diagnostic and usage data, including app/device information, installation or device identifiers, feature/API configuration, input/output sizes, latency and error categories. Erek Studio does not receive these ML Kit reports. This collection is separate from Firebase Analytics and is not disabled by the usage-statistics switch. Google&#x27;s disclosure is at https://developers.google.com/ml-kit/android-data-disclosure and its privacy policy is at https://policies.google.com/privacy. On iOS, the app&#x27;s scanning and OCR call Apple&#x27;s VisionKit and Vision frameworks instead.</p>
+    <h2>7. Sale and sharing of data</h2>
+    <p>Erek Studio does not sell personal information and does not share it for cross-context behavioural advertising, as the California CCPA/CPRA and comparable US state laws use those terms. The app shows no ads and accesses no advertising identifier.</p>
 
-    <h2>3. Permissions</h2>
+    <h2>8. International processing and security</h2>
+    <p>Google may process usage statistics, Firebase diagnostics and ML Kit diagnostics outside your country under its data-processing terms. Your documents are processed on the device; Erek Studio does not maintain a cloud document database. Network traffic from the app uses encrypted connections, but no system can promise absolute security.</p>
 
-    <p>Camera access is used when you scan pages. The system document/photo picker grants access to the files or photos you select. Scanning and editing happen on the device. PDF Privio does not request location, contacts, microphone or advertising-tracking permissions. Approximate location in Analytics is derived from network addresses, not GPS or a location permission.</p>
+    <h2>9. Children</h2>
+    <p>PDF Privio is a document utility for adults and is not directed at children under 13. It is not enrolled in Google Play’s Designed for Families programme. Contact us if you believe information about a child requires attention.</p>
 
-    <h2>4. Local storage</h2>
-
-    <p>PDF Privio stores generated files, preferences, recent-file references, the audit log, expense ledger and temporary processing files in app storage. These document-related records are not sent to Analytics. They remain until you delete them, the app clears temporary files, or the app is uninstalled, subject to the operating system&#x27;s backup and storage behavior. A display name entered in Settings is used only for the local greeting.</p>
-
-    <p>The usage-statistics preference is saved locally and applied at startup. Turning statistics off stops future Analytics collection; it does not automatically delete statistics already received by Google.</p>
-
-    <h2>5. Retention, deletion and your rights</h2>
-
-    <p>Usage statistics are retained under the Google Analytics property&#x27;s retention settings. You can stop future collection with the in-app toggle. For information, access, correction, objection or deletion requests, contact mustafasalimerek@gmail.com. We do not collect an account identity and may be unable to locate particular pseudonymous event records without additional information. Do not send us documents or sensitive content with a request. You may also complain to your local data-protection authority.</p>
-
-    <p>Deleting documents in PDF Privio affects their local copies. Files you shared to another app must be managed with that destination. Store transaction retention and deletion are controlled by Apple or Google under their own policies.</p>
-
-    <h2>6. International processing and security</h2>
-
-    <p>Google/Firebase may process statistics outside your country under its applicable data-processing terms. Documents are processed locally; Erek Studio does not maintain a cloud document database. Network statistics use encrypted transport, but no system can promise absolute security. Protect your device with a passcode or screen lock.</p>
-
-    <h2>7. Children</h2>
-
-    <p>PDF Privio is not directed at children under 13. Contact us if you believe information about a child requires attention. The usage-statistics toggle is available without creating an account.</p>
-
-    <h2>8. Policy changes and contact</h2>
-
-    <p>We will update this policy when data practices change. This version adds optional Firebase Analytics while keeping document processing local, preserves the Android ML Kit diagnostics disclosure, and explains separate Firebase technical diagnostics. Contact mustafasalimerek@gmail.com with privacy questions; we aim to respond within 30 days.</p>
+    <h2>10. Changes and contact</h2>
+    <p>We update this policy when the app’s data practices change and note material changes in the app’s release notes. This version, for 1.1.4: the advertising SDK is removed; optional Firebase Analytics is added; and every network connection, the audit log and temporary-file handling are described in full. Contact <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a> with privacy questions; we aim to respond within 30 days.</p>
 
     <footer class="site">
       <p>© 2026 Erek Studio · <a href="../">Privio</a> · <a href="../terms/">Terms of Service</a></p>

@@ -6,9 +6,9 @@
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#0F766E" />
   <title>Privio — On-device PDF toolkit for lawyers, accountants, and pros</title>
-  <meta name="description" content="23 PDF tools that run entirely on your iPhone. Scan, OCR, redact, sign, fill forms, compare versions, summarise with Apple Intelligence, capture receipts to CSV — your documents never leave your device. Free tier covers 18 of the 23 tools." />
+  <meta name="description" content="23 PDF tools for iPhone and iPad (21 on Android) that process your documents on the device. Scan, OCR, redact, sign, fill forms, compare versions, summarise with on-device Apple Intelligence, capture receipts to CSV. Every tool runs free; saving or sharing a result requires Pro." />
   <meta property="og:title" content="Privio" />
-  <meta property="og:description" content="On-device PDF toolkit. Your documents never leave your device." />
+  <meta property="og:description" content="On-device PDF toolkit. Your documents are processed on your device." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mustafasalimerek-bit.github.io/pdfprivio-legal/" />
   <link rel="canonical" href="https://mustafasalimerek-bit.github.io/pdfprivio-legal/" />
@@ -213,6 +213,24 @@
       letter-spacing: 0.4px;
       vertical-align: middle;
     }
+    .tools-note {
+      margin: 18px 0 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .tools-note .pro-pill {
+      display: inline-block;
+      padding: 1px 5px;
+      background: rgba(245, 158, 11, 0.15);
+      color: #b45309;
+      font-size: 9px;
+      font-weight: 800;
+      border-radius: 99px;
+      letter-spacing: 0.4px;
+      vertical-align: middle;
+    }
+    .wedge-item p a { color: var(--primary); }
     @media (max-width: 720px) {
       .tools-grid { grid-template-columns: 1fr 1fr; }
       .hero h1 { font-size: 36px; }
@@ -348,14 +366,15 @@
     <div class="container">
       <h1>
         23 PDF tools.<br />
-        <span class="accent">On your iPhone. Nowhere else.</span>
+        <span class="accent">Processed on your device.</span>
       </h1>
       <p class="lead">
-        The offline PDF toolkit for lawyers, accountants, and anyone who
-        handles documents that should not be uploaded to a stranger's
-        server. Scan, OCR, redact, sign, fill IRS &amp; USCIS forms,
-        compare versions, summarise with on-device Apple Intelligence,
-        capture receipts straight to a QuickBooks CSV — all on-device.
+        The on-device PDF toolkit for iPhone, iPad and Android — for
+        lawyers, accountants, and anyone who handles documents that should
+        not be uploaded to a stranger's server. Scan, OCR, redact, sign,
+        fill IRS &amp; USCIS forms, compare versions, summarise with
+        on-device Apple Intelligence (iOS 26+), capture receipts straight
+        to a QuickBooks CSV.
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#pricing">See pricing</a>
@@ -380,19 +399,24 @@
       <h2 class="section-heading">Built different on purpose</h2>
       <div class="wedge-row">
         <div class="wedge-item">
-          <h3>On-device, verifiable</h3>
+          <h3>On-device by design</h3>
           <p>
-            Every operation runs locally on the Neural Engine. The network
-            panel shows zero bytes outbound for your files. Show this to
-            clients with confidence.
+            Scanning, OCR, redaction, signing and summaries run on your
+            phone, and the app has no feature that uploads document content.
+            Its own network calls — store purchase checks, optional usage
+            statistics, and Firebase and Android ML Kit diagnostics — carry
+            no documents or file names. The
+            <a href="privacy/#network">privacy policy</a> lists them.
           </p>
         </div>
         <div class="wedge-item">
-          <h3>Lawyer-grade redaction</h3>
+          <h3>Burn-in redaction</h3>
           <p>
-            Matched text is removed from the data stream — not just covered.
-            Optional OCR-back keeps non-redacted text searchable. Bates
-            numbering and Form Fill round out the workflow.
+            Redaction rebuilds the PDF from page images: black boxes are
+            burned into the pixels over matched words and the original text
+            layer is dropped — the text is not just covered. Optional OCR-back
+            makes the remaining text searchable again. <a href="redaction/">How it works, and its
+            limits</a>.
           </p>
         </div>
         <div class="wedge-item">
@@ -413,8 +437,8 @@
       <p class="section-title">Everything inside</p>
       <h2 class="section-heading">The full toolkit</h2>
       <div class="tools-grid">
-        <div class="tool"><div class="name">Scan to PDF</div><div class="desc">VisionKit edge detection &amp; perspective</div></div>
-        <div class="tool"><div class="name">OCR PDF</div><div class="desc">Apple Vision searchable text layer</div></div>
+        <div class="tool"><div class="name">Scan to PDF</div><div class="desc">Edge detection &amp; perspective (VisionKit on iOS, ML Kit on Android)</div></div>
+        <div class="tool"><div class="name">OCR PDF</div><div class="desc">Searchable text layer (Apple Vision on iOS, ML Kit on Android)</div></div>
         <div class="tool"><div class="name">Merge PDFs</div><div class="desc">Combine document- or page-level</div></div>
         <div class="tool"><div class="name">Compress</div><div class="desc">Shrink for email — keep quality</div></div>
         <div class="tool"><div class="name">Split</div><div class="desc">By range, every N pages, or N parts</div></div>
@@ -422,21 +446,26 @@
         <div class="tool"><div class="name">Rotate pages</div><div class="desc">Fix sideways scans</div></div>
         <div class="tool"><div class="name">Delete pages</div><div class="desc">Drop what you don't need</div></div>
         <div class="tool"><div class="name">Sign PDF</div><div class="desc">ESIGN-style audit footer</div></div>
-        <div class="tool"><div class="name">Fill form<span class="pro-pill">PRO</span></div><div class="desc">IRS, USCIS, court motion AcroForm</div></div>
+        <div class="tool"><div class="name">Fill form</div><div class="desc">IRS, USCIS, court motion AcroForm</div></div>
         <div class="tool"><div class="name">Page numbers</div><div class="desc">Four formats, five positions</div></div>
-        <div class="tool"><div class="name">Bates numbering<span class="pro-pill">PRO</span></div><div class="desc">Legal discovery standard</div></div>
+        <div class="tool"><div class="name">Bates numbering</div><div class="desc">Legal discovery standard</div></div>
         <div class="tool"><div class="name">Password protect</div><div class="desc">AES-256 lock or unlock</div></div>
         <div class="tool"><div class="name">Watermark</div><div class="desc">CONFIDENTIAL / DRAFT, 3 layouts</div></div>
         <div class="tool"><div class="name">Extract text</div><div class="desc">Born-digital PDFs to plain text</div></div>
         <div class="tool"><div class="name">Compare PDFs</div><div class="desc">Redline two versions</div></div>
         <div class="tool"><div class="name">Find sensitive data</div><div class="desc">SSN, EIN, card, IBAN, email, phone</div></div>
-        <div class="tool"><div class="name">Redact<span class="pro-pill">PRO</span></div><div class="desc">Real removal + optional OCR-back</div></div>
+        <div class="tool"><div class="name">Redact</div><div class="desc">Burn-in redaction + optional OCR-back</div></div>
         <div class="tool"><div class="name">Bookmarks / TOC</div><div class="desc">Jump to chapter in long briefs &amp; depositions</div></div>
-        <div class="tool"><div class="name">Summarize PDF</div><div class="desc">On-device Apple Intelligence (iOS 26+)</div></div>
-        <div class="tool"><div class="name">Live Text view</div><div class="desc">Apple Live Text + Markup + Visual Look Up</div></div>
+        <div class="tool"><div class="name">Summarize PDF</div><div class="desc">On-device Apple Intelligence (iOS 26+ only)</div></div>
+        <div class="tool"><div class="name">Live Text view</div><div class="desc">Apple Live Text + Markup + Visual Look Up (iOS only)</div></div>
         <div class="tool"><div class="name">Batch operations<span class="pro-pill">PRO</span></div><div class="desc">Compress / Watermark / Rotate stacks of PDFs</div></div>
         <div class="tool"><div class="name">Receipt scanner<span class="pro-pill">PRO</span></div><div class="desc">Auto-extract date / vendor / total → QuickBooks CSV</div></div>
       </div>
+      <p class="tools-note">
+        Every tool opens and runs free on your own document; saving, sharing
+        or exporting the result requires Pro. Tools marked
+        <span class="pro-pill">PRO</span> require Pro to open.
+      </p>
     </div>
   </section>
 
@@ -474,6 +503,8 @@
         © 2026 Erek Studio · Istanbul, Türkiye ·
         <a href="privacy/">Privacy</a> ·
         <a href="terms/">Terms</a> ·
+        <a href="redaction/">Redaction</a> ·
+        <a href="support/">Support</a> ·
         <a href="mailto:mustafasalimerek@gmail.com">Contact</a>
       </p>
     </div>

@@ -228,14 +228,14 @@
       <div class="email">
         <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a>
       </div>
-      <p class="turnaround">Typical reply window is under 24 hours, Istanbul time. Bug reports get the fastest turnaround — include the iOS version and which tool you were using.</p>
+      <p class="turnaround">Typical reply window is under 24 hours, Istanbul time. Bug reports get the fastest turnaround — include your iOS or Android version and which tool you were using.</p>
     </div>
 
     <h2>What to include in a support email</h2>
     <ul>
       <li><strong>What you were trying to do</strong> — which tool, which step.</li>
       <li><strong>What you expected to happen</strong> versus what actually happened.</li>
-      <li><strong>iOS version + iPhone model</strong> (e.g. "iOS 26.4 on iPhone 15 Pro Max"). The in-app Contact Support button auto-fills the app version into the email for me.</li>
+      <li><strong>OS version + device model</strong> (e.g. "iOS 26.4 on iPhone 15 Pro Max" or "Android 16 on Pixel 9"). The in-app Contact Support button fills in the app version, build number and platform (iOS or Android) for me; nothing is sent until you send the email.</li>
       <li><strong>A screenshot</strong> if the issue is visual or there is an error message.</li>
     </ul>
     <p>Do <em>not</em> attach any PDF that contains sensitive information when filing a bug report. Privio runs on-device specifically so your documents stay private; please keep them off support email too.</p>
@@ -244,27 +244,27 @@
 
     <details>
       <summary>How do I cancel my Pro subscription?</summary>
-      <p>iPhone Settings → tap your name at the top → Subscriptions → Privio → Cancel Subscription. You keep access until the current period ends. No questions, no retention dark patterns from our side.</p>
+      <p>iPhone or iPad: Settings → tap your name at the top → Subscriptions → Privio → Cancel Subscription. Android: Google Play → tap your profile picture → Payments &amp; subscriptions → Subscriptions → Privio → Cancel. You keep access until the current period ends. No questions, no retention dark patterns from our side.</p>
     </details>
 
     <details>
       <summary>Where are my scanned and edited PDFs saved?</summary>
-      <p>Inside the Files app: <strong>On My iPhone → Privio</strong>. Everything Privio produces lives in its own sandbox folder; iOS encrypts it at rest as long as you have a passcode set. The files don't sync to iCloud unless you explicitly turn that on in the Files app settings.</p>
+      <p>When you save, share or export a result, it goes to Privio's own folder: on iPhone and iPad, that is the Files app → <strong>On My iPhone → Privio</strong> (or On My iPad); on Android, the app's private storage. Results you have not saved stay in a hidden staging folder and are deleted at the next app start once they are more than a day old. The folder is not in iCloud Drive, but like other app data it is included in your device backup (iCloud Backup or a computer backup; Android's device backup) if you back up your device. Both iOS and Android encrypt app storage when the device has a passcode or screen lock. Details: <a href="../privacy/#storage">Privacy Policy, section 4</a>.</p>
     </details>
 
     <details>
       <summary>Does Privio upload my PDFs anywhere?</summary>
-      <p>Your documents are processed on your device and are never uploaded by PDF Privio. Optional Firebase Analytics measures app use and purchases; you can turn usage statistics off in Settings. No documents, file names or identity details are sent to Analytics. Firebase technical diagnostics and Android ML Kit library diagnostics are separate from that switch. There are no ads, advertising identifiers or third-party crash-reporting SDKs. See the <a href="../privacy/">Privacy Policy</a> for details.</p>
+      <p>No. Your documents are processed on your device, and the app has no feature that uploads document content. The app does make a few network connections of its own: App Store or Google Play purchase checks when it starts, optional usage statistics through Firebase Analytics (on by default; turn them off in Settings → Privacy &amp; data), Firebase technical diagnostics, and on Android, Google ML Kit library diagnostics. None of them contains your documents or file names. There are no ads, advertising identifiers or third-party crash-reporting SDKs. The <a href="../privacy/#network">Privacy Policy</a> lists them.</p>
     </details>
 
     <details>
       <summary>The scanner is asking for camera access. Why?</summary>
-      <p>Privio uses Apple's VisionKit document scanner. It needs the camera at the moment you tap "Scan to PDF" to capture pages. The frames are processed in memory and the finished PDF is saved to your sandbox; nothing is uploaded. If you decline the permission, the scanner is disabled but every other tool still works — you can import PDFs and images through the Files app or share sheet instead.</p>
+      <p>On iPhone and iPad, Privio uses Apple's VisionKit document scanner, which needs the camera at the moment you tap "Scan to PDF" to capture pages. The pages are processed on the device and the finished PDF is saved in Privio's storage; nothing is uploaded. If you decline the permission, the scanner is disabled but every other tool still works — you can import PDFs and images through the Files app or the share sheet instead. On Android, the scanner is Google's ML Kit document scanner, which runs inside Google Play services, so Privio itself does not ask for camera access.</p>
     </details>
 
     <details>
       <summary>I redacted a PDF. Is the text really gone?</summary>
-      <p>Yes — Privio's Redact tool removes the matched text from the data stream, rasterises the affected pages, and burns black bars on top. There is no "hidden" text layer to extract. That said, complex PDFs have many surfaces (embedded objects, attachments, prior revisions, comments), so before sharing a sensitive document externally, open the redacted PDF in a separate viewer to do a final eyeball check.</p>
+      <p>For every match Privio finds, yes. Redact renders every page of the document to an image, burns black boxes over the matched words, and builds a new PDF from those images, so the original text layer, metadata, attachments, form fields, links and bookmarks are not carried over. If "Keep non-redacted text searchable" (OCR-back) is on — it is by default — Privio adds a new, invisible text layer recognised from the redacted images, so it contains only what is still visible on the page. Privio can only redact what it finds: matching works on the page's text layer, so text inside images is not found. Read <a href="../redaction/">How Privio redacts</a> for the known limitations, and before sharing a redacted PDF, search it for each term and look at every page.</p>
     </details>
 
     <details>
@@ -273,8 +273,8 @@
     </details>
 
     <details>
-      <summary>How do I restore my Pro purchase on a new iPhone?</summary>
-      <p>Open Privio → Settings → tap <strong>Restore purchases</strong>. As long as you sign into the new iPhone with the same Apple ID you used to buy Pro, the purchase will come back. If it does not, email me and I will help — usually the issue is a different Apple ID by mistake.</p>
+      <summary>How do I restore my Pro purchase on a new phone?</summary>
+      <p>Privio checks your purchases with the store each time it starts, so Pro usually comes back by itself. If it does not, open Privio → Settings → Account → <strong>Restore purchases</strong>. Use the same Apple ID (iPhone, iPad) or Google account (Android) you used to buy Pro. If it still does not come back, email me and I will help — usually the issue is a different account by mistake.</p>
     </details>
 
     <details>
@@ -282,12 +282,13 @@
       <p>Send me the use case (one paragraph is plenty) and what you currently do without it. I read every request and tend to prioritise the ones that match the lawyer / accountant / pro wedge — Privio is intentionally not trying to be every PDF app for every user.</p>
     </details>
 
-    <h2>App Store rating</h2>
-    <p>If Privio is genuinely helping you, leaving a quick rating on the App Store is the single most valuable thing you can do for a solo indie developer — it is how new users discover the app. The in-app prompt asks once after you have used a few tools; you can also leave a review any time by opening the App Store listing.</p>
+    <h2>Ratings</h2>
+    <p>If Privio is genuinely helping you, leaving a quick rating on the App Store or Google Play is the single most valuable thing you can do for a solo indie developer — it is how new users discover the app. If you have Pro, the store's rating prompt may appear after a few successful runs, at most once every 90 days; you can also leave a review any time from the store listing.</p>
 
     <h2>Legal</h2>
     <ul>
-      <li><a href="../privacy/">Privacy Policy</a> — document privacy, optional usage statistics, separate SDK diagnostics and your choices.</li>
+      <li><a href="../privacy/">Privacy Policy</a> — what stays on your device, the network connections the app makes, the on-device audit log and your choices.</li>
+      <li><a href="../redaction/">How Privio redacts</a> — the redaction method, its known limitations and how to check a redacted file.</li>
       <li><a href="../terms/">Terms of Service</a> — license, paid features, acceptable use, ESIGN notice, liability cap.</li>
     </ul>
 

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0F766E" />
+  <title>How Privio redacts · Privio</title>
+  <meta name="description" content="How PDF Privio's Redact tool works — finding terms in the text layer, burning them out of page images and rebuilding the PDF — with its known limitations and how to check a redacted file." />
+  <link rel="canonical" href="https://mustafasalimerek-bit.github.io/pdfprivio-legal/redaction/" />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --tertiary: #94a3b8;
+      --primary: #0f766e;
+      --primary-light: #14b8a6;
+      --border: #e2e8f0;
+      --code-bg: #f1f5f9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1220;
+        --surface: #111a2c;
+        --text: #e6edf3;
+        --muted: #94a3b8;
+        --tertiary: #64748b;
+        --primary: #2dd4bf;
+        --primary-light: #14b8a6;
+        --border: #1e293b;
+        --code-bg: #1a2540;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 32px 20px 64px;
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 720px; margin: 0 auto; }
+    header.brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 18px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    header.brand .mark {
+      width: 28px; height: 28px;
+      background: var(--primary);
+      border-radius: 7px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+    }
+    header.brand .name {
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--text);
+      letter-spacing: -0.2px;
+    }
+    header.brand .right {
+      margin-left: auto;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    header.brand .right a { color: var(--primary); text-decoration: none; }
+    header.brand .right a:hover { text-decoration: underline; }
+    h1 {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 0 0 16px;
+      letter-spacing: -0.5px;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin: 36px 0 12px;
+      color: var(--text);
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 24px 0 8px;
+      color: var(--text);
+    }
+    p {
+      margin: 0 0 14px;
+      color: var(--text);
+    }
+    a { color: var(--primary); text-decoration: underline; }
+    a:hover { color: var(--primary-light); }
+    ul, ol {
+      padding-left: 22px;
+      margin: 0 0 14px;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    li::marker { color: var(--tertiary); }
+    strong { color: var(--text); }
+    code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 13.5px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 28px 0;
+    }
+    .meta {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 0 0 24px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .meta strong { color: var(--text); }
+    .meta div { margin-bottom: 4px; }
+    .meta div:last-child { margin-bottom: 0; }
+    .tldr {
+      background: linear-gradient(
+        135deg,
+        rgba(15, 118, 110, 0.06),
+        rgba(20, 184, 166, 0.04)
+      );
+      border: 1px solid rgba(15, 118, 110, 0.25);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin: 18px 0 28px;
+    }
+    .tldr h2 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 15px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+    .tldr ul { margin-bottom: 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 0 18px;
+      font-size: 14px;
+    }
+    table th, table td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    table th {
+      background: var(--surface);
+      font-weight: 700;
+      color: var(--text);
+    }
+    footer.site {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--tertiary);
+      text-align: center;
+    }
+    footer.site a { color: var(--muted); }
+    @media (max-width: 480px) {
+      body { padding: 20px 16px 48px; }
+      h1 { font-size: 26px; }
+      h2 { font-size: 18px; margin-top: 28px; }
+      table th, table td { padding: 8px 10px; font-size: 13px; }
+    }
+    ol.steps { padding-left: 24px; }
+    ol.steps li { margin-bottom: 10px; }
+    .planned {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 1px 7px;
+      border-radius: 99px;
+      background: rgba(245, 158, 11, 0.15);
+      color: #b45309;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <header class="brand">
+      <span class="mark">P</span>
+      <span class="name">Privio</span>
+      <span class="right"><a href="../">Home</a> · <a href="../privacy/">Privacy</a> · <a href="../support/">Support</a></span>
+    </header>
+
+    <h1>How Privio redacts</h1>
+
+    <div class="meta">
+      <div><strong>Last updated:</strong> 2026-10-XX</div>
+      <div><strong>Applies to:</strong> PDF Privio 1.1.4 (build 70) on iOS and Android</div>
+      <div><strong>Contact:</strong> <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a></div>
+    </div>
+
+    <div class="tldr">
+      <h2>In short</h2>
+      <ul>
+        <li>Privio finds your search terms in the PDF’s text layer, renders every page to an image, burns black boxes into the pixels over the matched words, and builds a new PDF from those images. Nothing from the original file’s structure is copied into the new one.</li>
+        <li>It can only redact what it finds. Text inside images is not searched, and in this version a term split across two lines is not found. The <a href="#limitations">known limitations</a> are listed below.</li>
+        <li>Check every redacted file before you share it: <a href="#checking">how to check</a>.</li>
+        <li>Privio’s redaction has not been audited or certified by an independent third party. This note describes the method as implemented in the app’s source code; it is not a test report.</li>
+      </ul>
+    </div>
+
+    <h2 id="method">1. The method, step by step</h2>
+    <ol class="steps">
+      <li><strong>Search terms.</strong> You enter one or more terms. Matching ignores upper and lower case unless you turn on case-sensitive matching.</li>
+      <li><strong>Finding matches.</strong> Privio reads the PDF’s text layer page by page and line by line, and looks for each term inside each line of text. For every match it takes the bounding boxes of the words the match touches, as reported by the text layer, and pads them slightly (1 point above, 2 points below). If the word boxes cannot be determined, the whole line is covered instead.</li>
+      <li><strong>No match, no change.</strong> If no term matches, Privio tells you so and produces no new file; your document is unchanged.</li>
+      <li><strong>Rendering every page.</strong> Every page — not only the pages with matches — is rendered to a JPEG image about 2,000 pixels on its long edge (roughly 180 dpi for a US Letter page; JPEG quality 88), using the platform’s PDF renderer (Apple PDFKit on iOS, Android PdfRenderer on Android).</li>
+      <li><strong>Burning.</strong> On pages with matches, Privio paints solid black rectangles into the image pixels over the matched word boxes and re-encodes the image.</li>
+      <li><strong>Rebuilding.</strong> Privio builds a brand-new PDF from the page images. The original file’s text layer, fonts, metadata, attachments, form fields, links, bookmarks and earlier revisions are not copied into it.</li>
+      <li><strong>OCR-back (“Keep non-redacted text searchable”, on by default).</strong> Privio runs on-device text recognition — Apple Vision on iOS, Google ML Kit on Android — on each redacted page image and adds the recognised text as an invisible text layer over the image, so the remaining text can be searched and copied. The recognizer only sees the burned images, so the black boxes contribute no text. With OCR-back off, the new PDF contains page images only, at the original page sizes, and has no text layer at all.</li>
+    </ol>
+    <p>Everything above runs on your device; no page image or text is uploaded. (On Android, ML Kit sends Google its own diagnostic metadata, described in the <a href="../privacy/#network">privacy policy</a>.) The free version and Pro run the same pipeline — Pro is needed only to save, share or export the result. The page images are written to the app’s private temporary folder during the run and deleted when it ends, whether it finishes, fails or is cancelled; if the app crashes or is force-quit mid-run, they stay there until the operating system clears the folder. The on-device audit log records the number of search terms, matches and affected pages — never the terms themselves.</p>
+
+    <h2 id="limitations">2. Known limitations in 1.1.4</h2>
+    <ul>
+      <li><strong>Only the text layer is searched.</strong> Text that is part of an image — a scanned page, a photo, a signature or a chart — is not found. Run a scanned PDF through the OCR PDF tool first; matches then depend on how accurately the OCR read the page.</li>
+      <li><strong>A term must sit on one line, spaced as you typed it.</strong> A term broken across two lines (including a hyphenated line break), or with different spacing in the text layer, is not found. <span class="planned" data-release="1.1.5">Planned for 1.1.5</span></li>
+      <li><strong>No warning for unreadable pages.</strong> If a page has no text layer, or its text cannot be extracted, Privio treats it as a page without matches and does not tell you. <span class="planned" data-release="1.1.5">Planned for 1.1.5</span></li>
+      <li><strong>Matching is literal.</strong> The term must match the characters stored in the text layer. Ligatures (for example “ﬁ”), special hyphens or other character variants in the PDF can prevent a match.</li>
+      <li><strong>Whole words are covered.</strong> A match inside a longer word blacks out the whole word: searching for “Ann” also covers “Annual” and “Planning”.</li>
+      <li><strong>Boxes follow the text layer’s positions.</strong> If a PDF’s text layer does not line up exactly with the visible letters — this happens in some files — a box can miss part of a word.</li>
+      <li><strong>Annotations and form fields.</strong> Text in comments, text boxes, stamps and form fields is not part of the page’s text layer and may not be searched. If such text is visible on the rendered page, it can appear in the output without a black box.</li>
+      <li><strong>A page that cannot be rendered is left out.</strong> If the platform renderer fails to draw a page, that page is missing from the output. Compare the page counts.</li>
+      <li><strong>Page size with OCR-back.</strong> With OCR-back on, each page’s size in the new PDF equals the image’s pixel size (one pixel per point), so a US Letter page becomes about 21.5 × 27.8 inches. Viewers scale it to fit, but printing at actual size, or an e-filing system that checks page size, may not accept it. With OCR-back off, the original page sizes are kept.</li>
+      <li><strong>OCR-back languages.</strong> Text recognition for OCR-back is set up for English and Turkish; text in other languages may be recognised less accurately. This affects only searching the output, not what was redacted.</li>
+      <li><strong>The output is an image-based PDF.</strong> It is usually larger than the original, its text is selectable only through the OCR-back layer (which can contain recognition errors), and form fields, links and bookmarks no longer work.</li>
+    </ul>
+
+    <h2 id="checking">3. How to check a redacted file</h2>
+    <ol class="steps">
+      <li><strong>Compare page counts</strong> between the original and the redacted file.</li>
+      <li><strong>Search the exported file for every term</strong>, including variants: different case, spacing, line breaks, abbreviations and possessives. Keep OCR-back on for this, or run the exported file through OCR first — with OCR-back off the file has no text, so a search finds nothing either way.</li>
+      <li><strong>Look at every page</strong> at a zoom where you can read the text. Check that each box covers the whole term, and look for anything a search cannot see: images, stamps, handwriting, headers and footers, comments and form fields.</li>
+      <li><strong>Open the file in a second viewer</strong> (for example Adobe Acrobat or Apple Preview) and try to select and copy text around a box.</li>
+      <li><strong>For important productions</strong>, treat Privio’s redaction as one step and follow your own quality-control process.</li>
+    </ol>
+
+    <h2 id="planned">4. Planned for 1.1.5</h2>
+    <p>These changes are planned for the next update. Until it is released, the limitations above apply.</p>
+    <ul>
+      <li data-release="1.1.5">Pages that have no text layer, or whose text cannot be read, will be listed on the result screen, and Privio will ask you to confirm before you export.</li>
+      <li data-release="1.1.5">Matches that run across a line break, and matches whose spacing differs from your search term, will be found.</li>
+      <li data-release="1.1.5">Temporary files, including copies made by the file picker, will be deleted when the app starts.</li>
+    </ul>
+
+    <footer class="site">
+      <p>© 2026 Erek Studio · <a href="../">Privio</a> · <a href="../privacy/">Privacy Policy</a> · <a href="../terms/">Terms of Service</a></p>
+    </footer>
+  </div>
+</body>
+</html>
