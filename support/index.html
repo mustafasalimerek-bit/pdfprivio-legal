@@ -268,8 +268,14 @@
     </details>
 
     <details>
-      <summary>Can I fill USCIS and other scripted government forms?</summary>
-      <p>Partly. Fill form fills standard PDF form fields — text boxes, checkboxes, radio buttons and choice lists. It does not run the JavaScript that some forms rely on, USCIS forms among them, and it respects a field's read-only flag. On those forms, fields that the form's script would unlock stay read-only, values the script would copy elsewhere (such as an A-Number repeated in page headers) are not copied, and flattening can remove a 2D barcode the script would generate. For such forms, use a PDF reader that runs form scripts.</p>
+      <summary>Can I fill USCIS forms, such as the I-485?</summary>
+      <p>Only partly. For USCIS forms, use Adobe Acrobat Reader. We checked the I-485 (edition 09/18/26): it is an XFA form, built on a scripted form layer that Adobe Reader runs. Privio does not run form scripts; it fills the standard (AcroForm) form fields that the same file also contains. In that layer:</p>
+      <ul>
+        <li>131 of the form’s 730 fields are marked read-only, including every A-Number box. Privio honours the read-only flag, so in Privio the A-Number cannot be typed anywhere. In Adobe Reader you type it once, in Part 1, Item 4 on page 2, and the other A-Number boxes show the same value.</li>
+        <li>Many of the other read-only fields are conditional fields that the form’s scripts open in Adobe Reader.</li>
+        <li>When Privio saves the form, flattened or not, the 2D barcode is drawn as plain text instead, for example “I-485|09/18/26|1”. The barcode holds only the form name, edition and page number, not your answers.</li>
+      </ul>
+      <p>Privio fills standard PDF forms: text fields, checkboxes, radio buttons and choice lists.</p>
     </details>
 
     <details>
