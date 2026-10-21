@@ -228,7 +228,7 @@
       <h2>In short</h2>
       <ul>
         <li>Privio finds your search terms in the PDF’s text layer, renders every page to an image, burns black boxes into the pixels over the matched words, and builds a new PDF from those images. Nothing from the original file’s structure is copied into the new one.</li>
-        <li>It can only redact what it finds. Text inside images is not searched, and in this version a term split across two lines is not found. The <a href="#limitations">known limitations</a> are listed below.</li>
+        <li>It can only redact what it finds, and this version has gaps: text inside images and form fields is not searched, a term split across two lines is not found, and on rotated pages the boxes land in the wrong place. The <a href="#limitations">known limitations</a> are listed below.</li>
         <li>Check every redacted file before you share it: <a href="#checking">how to check</a>.</li>
         <li>Privio’s redaction has not been audited or certified by an independent third party. This note describes the method as implemented in the app’s source code; it is not a test report.</li>
       </ul>
@@ -251,11 +251,14 @@
       <li><strong>Only the text layer is searched.</strong> Text that is part of an image — a scanned page, a photo, a signature or a chart — is not found. Run a scanned PDF through the OCR PDF tool first; matches then depend on how accurately the OCR read the page.</li>
       <li><strong>A term must sit on one line, spaced as you typed it.</strong> A term broken across two lines (including a hyphenated line break), or with different spacing in the text layer, is not found. <span class="planned" data-release="1.1.5">Planned for 1.1.5</span></li>
       <li><strong>No warning for unreadable pages.</strong> If a page has no text layer, or its text cannot be extracted, Privio treats it as a page without matches and does not tell you. <span class="planned" data-release="1.1.5">Planned for 1.1.5</span></li>
-      <li><strong>Matching is literal.</strong> The term must match the characters stored in the text layer. Ligatures (for example “ﬁ”), special hyphens or other character variants in the PDF can prevent a match.</li>
+      <li><strong>Matching is literal.</strong> The term must match the characters stored in the text layer. Ligatures (for example “ﬁ”), special hyphens, invisible formatting characters or other character variants in the PDF can prevent a match.</li>
       <li><strong>Whole words are covered.</strong> A match inside a longer word blacks out the whole word: searching for “Ann” also covers “Annual” and “Planning”.</li>
       <li><strong>Boxes follow the text layer’s positions.</strong> If a PDF’s text layer does not line up exactly with the visible letters — this happens in some files — a box can miss part of a word.</li>
-      <li><strong>Annotations and form fields.</strong> Text in comments, text boxes, stamps and form fields is not part of the page’s text layer and may not be searched. Depending on the platform’s renderer, such content is either drawn into the page image — where it can appear without a black box — or left out of the output altogether. Check pages that carry comments or filled-in forms.</li>
-      <li><strong>A page that cannot be rendered is left out.</strong> If the platform renderer fails to draw a page, that page is missing from the output. Compare the page counts.</li>
+      <li><strong>Rotated pages.</strong> On a page rotated by 90, 180 or 270 degrees — including pages turned with Privio’s own Rotate tool — the boxes land in the wrong place: the term stays visible and other text is covered. Do not rely on this version to redact rotated pages. <span class="planned" data-release="1.1.5">Planned for 1.1.5</span></li>
+      <li><strong>Form fields and annotations.</strong> Values typed into form fields, and text in comments, text boxes and stamps, are not part of the page’s text layer, so they are not searched — but they are drawn into the page image, so they appear in the output without a black box. <span class="planned" data-release="1.1.5">Planned for 1.1.5</span></li>
+      <li><strong>Pages with a crop box (iOS).</strong> On iOS, when a page’s visible area (its crop box) differs from its full size, the boxes can be offset from the words. <span class="planned" data-release="1.1.5">Planned for 1.1.5</span></li>
+      <li><strong>Scans made searchable with Privio.</strong> In a scan that went through Privio’s OCR PDF tool, the invisible text layer’s word boxes may not line up exactly with the visible words, so the black boxes can be offset. Check those pages closely.</li>
+      <li><strong>A page that cannot be rendered is left out.</strong> If the platform renderer fails to draw a page, that page is missing from the output. Compare the page counts. <span class="planned" data-release="1.1.5">Planned for 1.1.5</span></li>
       <li><strong>Page size with OCR-back.</strong> With OCR-back on, each page’s size in the new PDF equals the image’s pixel size (one pixel per point), so a US Letter page becomes about 21.5 × 27.8 inches. Viewers scale it to fit, but printing at actual size, or an e-filing system that checks page size, may not accept it. With OCR-back off, the original page sizes are kept.</li>
       <li><strong>OCR-back languages.</strong> Text recognition for OCR-back is set up for English and Turkish; text in other languages may be recognised less accurately. This affects only searching the output, not what was redacted.</li>
       <li><strong>The output is an image-based PDF.</strong> It is usually larger than the original, its text is selectable only through the OCR-back layer (which can contain recognition errors), and form fields, links and bookmarks no longer work.</li>
@@ -265,7 +268,7 @@
     <ol class="steps">
       <li><strong>Compare page counts</strong> between the original and the redacted file.</li>
       <li><strong>Search the exported file for every term</strong>, including variants: different case, spacing, line breaks, abbreviations and possessives. Keep OCR-back on for this, or run the exported file through OCR first — with OCR-back off the file has no text, so a search finds nothing either way.</li>
-      <li><strong>Look at every page</strong> at a zoom where you can read the text. Check that each box covers the whole term, and look for anything a search cannot see: images, stamps, handwriting, headers and footers, comments and form fields.</li>
+      <li><strong>Look at every page</strong> at a zoom where you can read the text. Check that each box covers the whole term, and look for anything a search cannot see: images, stamps, handwriting, headers and footers, comments and form fields. Take extra care with rotated pages, filled-in forms and scanned pages.</li>
       <li><strong>Open the file in a second viewer</strong> (for example Adobe Acrobat or Apple Preview) and try to select and copy text around a box.</li>
       <li><strong>For important productions</strong>, treat Privio’s redaction as one step and follow your own quality-control process.</li>
     </ol>
@@ -275,6 +278,10 @@
     <ul>
       <li data-release="1.1.5">Pages that have no text layer, or whose text cannot be read, will be listed on the result screen, and Privio will ask you to confirm before you export.</li>
       <li data-release="1.1.5">Matches that run across a line break, and matches whose spacing differs from your search term, will be found.</li>
+      <li data-release="1.1.5">Rotated pages will be redacted in the right place, and keep their rotation in the output.</li>
+      <li data-release="1.1.5">Form-field values and annotations will be flattened into the page first, so they are searched as well as drawn.</li>
+      <li data-release="1.1.5">A page that cannot be rendered will stop the run with an error instead of being left out.</li>
+      <li data-release="1.1.5">On iOS, pages whose crop box differs from their full size will be listed as unchecked instead of being blacked out in the wrong place.</li>
       <li data-release="1.1.5">Temporary files, including copies made by the file picker, will be deleted when the app starts.</li>
     </ul>
 

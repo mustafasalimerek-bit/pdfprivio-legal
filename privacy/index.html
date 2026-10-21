@@ -274,7 +274,7 @@
       <li>They stay behind, until the operating system clears the temporary folder, if the app crashes or is force-quit during the operation, or if you cancel the OCR PDF tool, or leave its screen, while it is still rendering pages.</li>
       <li>Two kinds of temporary file are not deleted by the app in this version; the operating system removes them when it clears the folder: the image of a PDF receipt’s first page, made when you import a receipt from a PDF, and the copies the system file picker makes of the files you pick.</li>
     </ul>
-    <p>The temporary folder is inside the app’s sandbox, is not shown in the Files app and is not included in device backups.</p>
+    <p>The temporary folder is inside the app’s sandbox, is not shown in the Files app and is not included in device backups. One exception on iOS: the PDF renderer writes each page image briefly to a <code>pdf_renderer_cache</code> folder inside the Documents folder and deletes it as soon as the image has been read; if the app stops at that moment, the image stays there, where the Files app shows it.</p>
 
     <h3 id="audit-log">4.3 Audit log</h3>
     <p>Privio writes an audit-log entry automatically each time most tools finish a run. In this version there is no setting to turn it off. The log stays on your device; you can view it, export it as a CSV file or clear it in <strong>Settings → Privacy &amp; data → Audit log</strong>.</p>
