@@ -204,7 +204,7 @@
 
     <div class="meta">
       <div><strong>Last updated:</strong> 2026-10-XX</div>
-      <!-- TODO-1.1.5: checked against release-1.1.5 c53b46f = build 1.1.5 (71), uploaded to TestFlight, not yet submitted. Confirm the submitted build is this one (if not, re-check), then remove this comment. -->
+      <!-- TODO-1.1.5: checked against release-1.1.5 ca84479 = build 1.1.5 (72). Confirm the submitted build is this one (if not, re-check), then remove this comment. -->
       <div><strong>Applies to:</strong> PDF Privio 1.1.5 and later, on iOS and Android; <a href="#earlier-versions">section 10</a> covers versions 1.1.1 to 1.1.3</div>
       <div><strong>Operator:</strong> Erek Studio (Mustafa Salim Erek, sole proprietor)</div>
       <div><strong>Contact:</strong> <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a></div>
@@ -216,7 +216,7 @@
       <ul>
         <li><strong>Your documents are processed on your device.</strong> There is no Erek Studio server and no account. The app has no feature that uploads document content: your PDFs, page images, recognized text, signatures, form entries, redaction search terms and receipt details are not sent to Erek Studio, to Firebase or to any other service, unless you share or export them yourself or use an Apple feature such as Visual Look Up (section 1.2).</li>
         <li><strong>The app does make some network connections of its own.</strong> Section 1 lists them: App Store or Google Play purchase checks each time the app starts, optional usage statistics through Google Analytics for Firebase (on by default for the free version, off by default with Pro; you can change it in Settings), Firebase technical diagnostics, and on Android, Google’s ML Kit diagnostics. None of them contains document content or file names.</li>
-        <li><strong>No ads and no tracking.</strong> There is no advertising SDK, no access to your advertising identifier, no App Tracking Transparency prompt and no third-party crash-reporting SDK.</li>
+        <li><strong>No ads and no tracking.</strong> There is no advertising SDK, no access to your advertising identifier and no third-party crash-reporting SDK. On iOS, Privio asks Apple’s App Tracking Transparency question once; nothing in the app depends on your answer (<a href="#att">section 2</a> explains why it is asked).</li>
         <li><strong>Privio keeps an audit log on your device</strong> — one entry per tool run, with file names, sizes, a partial file hash and the tool’s settings (section 4.3). You can turn it off, or keep file names and labels out of it. It does not leave the device unless you export it.</li>
       </ul>
     </div>
@@ -249,7 +249,8 @@
     <p>Usage statistics are on by default for the free version and off by default with Pro. If you have not changed the setting yourself, it follows your plan: after you buy Pro, or tap Restore purchases, statistics stay on until the app is next started and are off from then on; a Pro user who reinstalls Privio or installs it on a new device starts with them off. A choice you make in <strong>Settings → Privacy &amp; data → Share usage statistics</strong> always wins over the default. Turning them off does not change tool access, prices, purchases or document processing. It stops future Analytics collection; it does not delete statistics Google has already received.</p>
     <p>When they are on, the app sends Google Analytics for Firebase these events and no others: onboarding completed; tool opened, with the tool’s name from a fixed list; paywall shown, with where it was opened from (and the tool, if any); paywall closed, with whether a purchase was made; purchase started and its outcome, with the plan (monthly, yearly or lifetime), the result (success, cancelled, pending or failed) and a fixed error category; restore outcome, with the type of purchase found; scan completed, with a page-count range (1, 2–5, 6–20 or 21+); export tapped, with the tool; and export completed, with the tool and the output type (PDF, image, text or other). The only user property the app sets is whether Pro is active. The app never sets a user ID.</p>
     <p>Firebase also records its own automatic events, such as first open, session start and in-app purchases (which can include the product ID, product name and price), together with an app-instance identifier, app, device and OS information, and an approximate location derived from your IP address. On Android, Firebase can also read the Google Play install referrer — the store campaign or source that led to the installation, if any. These statistics are pseudonymous, not anonymous: the app-instance identifier links events from the same installation. They never include your name, email address, document names, file paths, document text, receipt contents, signatures or images.</p>
-    <p>Advertising storage, advertising user data and ad-personalization consent are set to denied. Collection of the iOS IDFA and IDFV and the Android Advertising ID and SSAID, automatic screen reporting and iOS ad-network registration are disabled. No App Tracking Transparency prompt is shown.</p>
+    <p>Advertising storage, advertising user data and ad-personalization consent are set to denied. Collection of the iOS IDFA and IDFV and the Android Advertising ID and SSAID, automatic screen reporting and iOS ad-network registration are disabled.</p>
+    <p id="att">On iOS, Privio asks the App Tracking Transparency question once. Privio does not track you or read your advertising identifier, and nothing in the app depends on your answer. The question is there because Privio’s App Store privacy label still lists tracking from the earlier ad-supported version, and Apple requires apps whose label declares tracking to ask it. Android has no such question.</p>
     <p>Erek Studio uses the reports only to see how the app is used and where people stop before finishing a task or a purchase. We do not sell this data or use it for advertising. Google processes it under its own terms: <a href="https://firebase.google.com/support/privacy" rel="noopener">firebase.google.com/support/privacy</a> and <a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a>.</p>
 
     <h2 id="permissions">3. Permissions</h2>
@@ -257,7 +258,7 @@
       <li><strong>Camera (iOS).</strong> Requested the first time you scan. Apple’s VisionKit document camera captures the pages and the finished PDF is written to the app’s storage. On Android, the scanner runs inside Google Play services and Privio does not hold the camera permission itself.</li>
       <li><strong>Photos and files.</strong> The system photo and document pickers give the app only the items you select.</li>
     </ul>
-    <p>The app does not request location, contacts, microphone, calendar or tracking permissions. The approximate location in usage statistics comes from your IP address, not from GPS or a location permission.</p>
+    <p>The app does not request location, contacts, microphone or calendar permissions. On iOS it asks the App Tracking Transparency question once (see <a href="#att">section 2</a>); the answer is not used. The approximate location in usage statistics comes from your IP address, not from GPS or a location permission.</p>
 
     <h2 id="storage">4. What is stored on your device</h2>
 
