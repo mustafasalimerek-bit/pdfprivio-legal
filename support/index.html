@@ -238,7 +238,7 @@
       <li><strong>OS version + device model</strong> (e.g. "iOS 26.4 on iPhone 15 Pro Max" or "Android 16 on Pixel 9"). The in-app Contact Support button fills in the app version, build number and platform (iOS or Android) for me; nothing is sent until you send the email.</li>
       <li><strong>A screenshot</strong> if the issue is visual or there is an error message.</li>
     </ul>
-    <p>Do <em>not</em> attach any PDF that contains sensitive information when filing a bug report. Privio runs on-device specifically so your documents stay private; please keep them off support email too.</p>
+    <p>Do <em>not</em> attach any PDF that contains sensitive information when filing a bug report. Privio processes your documents on the device so that it never has to upload them; please keep them off support email too.</p>
 
     <h2>Common questions</h2>
 
@@ -259,7 +259,13 @@
 
     <details id="icloud-backup">
       <summary>Can I keep Privio's files out of iCloud Backup?</summary>
-      <p>Yes, on iPhone and iPad: open Settings, tap your name, then iCloud → Storage (or Manage Account Storage) → Backups, tap this device, turn off Privio and tap Turn Off. iOS stops backing up Privio's files to iCloud and deletes the copies already in iCloud Backup. The files stay on your device, but a device restored from iCloud Backup will not have them. A backup to a computer still includes them, so tick <strong>Encrypt local backup</strong> in Finder on a Mac, or in the Apple Devices app or iTunes on a PC. If you keep Privio in iCloud Backup, you can turn on <strong>Advanced Data Protection</strong> (Settings → your name → iCloud → Advanced Data Protection) so that iCloud Backup is end-to-end encrypted; without it, Apple holds the keys to your iCloud backups. Advanced Data Protection needs two-factor authentication for your Apple Account, a device passcode, and a recovery contact or recovery key. Privio itself does not upload your documents. Details: <a href="../privacy/#backups">Privacy Policy, section 4.5</a>.</p>
+      <p>Yes, on iPhone and iPad. Privio never uploads your documents, but your device's backups include its files like other app data. Three separate settings decide what happens to them:</p>
+      <ul>
+        <li><strong>Leave Privio out of iCloud Backup.</strong> Open Settings, tap your name, then iCloud → Storage (or Manage Account Storage) → Backups, tap this device, turn off Privio and tap Turn Off. iOS stops backing up Privio's files to iCloud and deletes the copies already in iCloud Backup. The files stay on your device, but a device restored from iCloud Backup will not have them. Apple: <a href="https://support.apple.com/en-us/108922" rel="noopener">Manage your iCloud storage</a>.</li>
+        <li><strong>Computer backups.</strong> That switch does not affect a backup to a Mac or PC, which still includes Privio's files. To encrypt it, tick <strong>Encrypt local backup</strong> in Finder on a Mac, or in the Apple Devices app or iTunes on a PC.</li>
+        <li><strong>Advanced Data Protection.</strong> If you keep Privio in iCloud Backup, turning on Advanced Data Protection (Settings → your name → iCloud → Advanced Data Protection) makes iCloud Backup end-to-end encrypted, so Apple no longer holds its keys. The backup is still uploaded to iCloud: Advanced Data Protection changes who can read it, not where it goes. It needs two-factor authentication for your Apple Account, a device passcode, and a recovery contact or recovery key. Apple: <a href="https://support.apple.com/en-us/108756" rel="noopener">How to turn on Advanced Data Protection for iCloud</a>.</li>
+      </ul>
+      <p>On Android, the device backup can include Privio's files. Details: <a href="../privacy/#backups">Privacy Policy, section 4.5</a>.</p>
     </details>
 
     <details>
@@ -269,7 +275,12 @@
 
     <details id="password">
       <summary>How does Password protect encrypt a PDF?</summary>
-      <p>With AES-256. From version 1.1.7, Privio uses the PDF 2.0 method (revision 6) and asks for a password of 8 to 127 printable ASCII characters: A–Z, a–z, 0–9, spaces and ASCII symbols. Apple's PDF viewers (Files, Mail, Safari, Preview) handle accented letters and other alphabets in a password differently from other PDF apps, so such a password might open the file in one and not the other. Earlier versions of Privio use revision 5, the older AES-256 method introduced with Acrobat 9, which PDF 2.0 replaced with revision 6. Version 1.1.7 still removes passwords from files protected by earlier versions; to move such a file to revision 6, remove its password and protect it again. Filing with a court? Federal CM/ECF and many courts' e-filing systems reject password-protected or encrypted PDFs, so upload an unprotected copy.</p>
+      <p>With AES-256, in one of two ways, depending on the version of Privio that set the password:</p>
+      <ul>
+        <li><strong>Version 1.1.7 and later.</strong> A password you set uses the PDF 2.0 method (revision 6) and must be 8 to 127 printable ASCII characters: A–Z, a–z, 0–9, spaces and ASCII symbols. Apple's PDF viewers (Files, Mail, Safari, Preview) handle accented letters and other alphabets in a password differently from other PDF apps, so such a password might open the file in one and not the other.</li>
+        <li><strong>Version 1.1.6 and earlier.</strong> Privio uses revision 5, the older AES-256 method introduced with Acrobat 9, which PDF 2.0 replaced with revision 6, and accepts passwords of 4 or more characters.</li>
+      </ul>
+      <p>Updating Privio does not change files you have already protected: they keep revision 5. Version 1.1.7 still removes their passwords; to move such a file to revision 6, remove its password and protect it again. Filing with a court? Federal CM/ECF and many courts' e-filing systems reject password-protected or encrypted PDFs, so upload an unprotected copy.</p>
     </details>
 
     <details>
