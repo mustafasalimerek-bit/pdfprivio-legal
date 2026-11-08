@@ -254,12 +254,22 @@
 
     <details>
       <summary>Where are my scanned and edited PDFs saved?</summary>
-      <p>When you save, share or export a result, it goes to Privio's own folder: on iPhone and iPad, that is the Files app → <strong>On My iPhone → Privio</strong> (or On My iPad); on Android, the app's private storage. Without Pro, the copy with the watermark goes there, and the result without it stays in a hidden staging folder with any results you have not saved; those are deleted at the next app start once they are more than a day old. If you buy Pro on the same result screen, the clean file replaces the watermarked copy. The folder is not in iCloud Drive, but like other app data it is included in your device backup (iCloud Backup or a computer backup; Android's device backup) if you back up your device. Both iOS and Android encrypt app storage when the device has a passcode or screen lock. Details: <a href="../privacy/#storage">Privacy Policy, section 4</a>.</p>
+      <p>When you save, share or export a result, it goes to Privio's own folder: on iPhone and iPad, that is the Files app → <strong>On My iPhone → Privio</strong> (or On My iPad); on Android, the app's private storage. Without Pro, the copy with the watermark goes there, and the result without it stays in a hidden staging folder with any results you have not saved; those are deleted at the next app start once they are more than a day old. If you buy Pro on the same result screen, the clean file replaces the watermarked copy. The folder is not in iCloud Drive, but like other app data it is included in your iPhone or iPad backups (iCloud Backup or a computer backup), and Android's device backup can include it, if you back up your device; to keep it out of iCloud Backup, see the next question. Both iOS and Android encrypt app storage when the device has a passcode or screen lock. Details: <a href="../privacy/#storage">Privacy Policy, section 4</a>.</p>
+    </details>
+
+    <details id="icloud-backup">
+      <summary>Can I keep Privio's files out of iCloud Backup?</summary>
+      <p>Yes, on iPhone and iPad: open Settings, tap your name, then iCloud → Storage (or Manage Account Storage) → Backups, tap this device, turn off Privio and tap Turn Off. iOS stops backing up Privio's files to iCloud and deletes the copies already in iCloud Backup. The files stay on your device, but a device restored from iCloud Backup will not have them. A backup to a computer still includes them, so tick <strong>Encrypt local backup</strong> in Finder on a Mac, or in the Apple Devices app or iTunes on a PC. If you keep Privio in iCloud Backup, you can turn on <strong>Advanced Data Protection</strong> (Settings → your name → iCloud → Advanced Data Protection) so that iCloud Backup is end-to-end encrypted; without it, Apple holds the keys to your iCloud backups. Advanced Data Protection needs two-factor authentication for your Apple Account, a device passcode, and a recovery contact or recovery key. Privio itself does not upload your documents. Details: <a href="../privacy/#backups">Privacy Policy, section 4.5</a>.</p>
     </details>
 
     <details>
       <summary>Does Privio upload my PDFs anywhere?</summary>
       <p>No. Your documents are processed on your device, and the app has no feature that uploads document content. The app does make a few network connections of its own: App Store or Google Play purchase checks when it starts, optional usage statistics through Firebase Analytics (on by default for the free version, off by default with Pro; change it in Settings → Privacy &amp; data), Firebase technical diagnostics, and on Android, Google ML Kit library diagnostics. None of them contains your documents or file names. There are no ads, advertising identifiers or third-party crash-reporting SDKs. The <a href="../privacy/#network">Privacy Policy</a> lists them.</p>
+    </details>
+
+    <details id="password">
+      <summary>How does Password protect encrypt a PDF?</summary>
+      <p>With AES-256. From version 1.1.7, Privio uses the PDF 2.0 method (revision 6) and asks for a password of 8 to 127 printable ASCII characters: A–Z, a–z, 0–9, spaces and ASCII symbols. Apple's PDF viewers (Files, Mail, Safari, Preview) handle accented letters and other alphabets in a password differently from other PDF apps, so such a password might open the file in one and not the other. Earlier versions of Privio use revision 5, the older AES-256 method introduced with Acrobat 9, which PDF 2.0 replaced with revision 6. Version 1.1.7 still removes passwords from files protected by earlier versions; to move such a file to revision 6, remove its password and protect it again. Filing with a court? Federal CM/ECF and many courts' e-filing systems reject password-protected or encrypted PDFs, so upload an unprotected copy.</p>
     </details>
 
     <details>
@@ -303,7 +313,7 @@
 
     <h2>Legal</h2>
     <ul>
-      <li><a href="../privacy/">Privacy Policy</a> — what stays on your device, the network connections the app makes, the on-device audit log and your choices.</li>
+      <li><a href="../privacy/">Privacy Policy</a> — what Privio stores on your device, the network connections the app makes, the on-device audit log and your choices.</li>
       <li><a href="../redaction/">How Privio redacts</a> — the redaction method, its known limitations and how to check a redacted file.</li>
       <li><a href="../terms/">Terms of Service</a> — license, paid features, acceptable use, ESIGN notice, liability cap.</li>
     </ul>

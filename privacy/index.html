@@ -213,10 +213,10 @@
     <div class="tldr">
       <h2>Summary</h2>
       <ul>
-        <li><strong>Your documents are processed on your device.</strong> There is no Erek Studio server and no account. The app has no feature that uploads document content: your PDFs, page images, recognized text, signatures, form entries, redaction search terms and receipt details are not sent to Erek Studio, to Firebase or to any other service, unless you share or export them yourself or use an Apple feature such as Visual Look Up (section 1.2).</li>
+        <li><strong>Your documents are processed on your device.</strong> There is no Erek Studio server and no account. The app has no feature that uploads document content: your PDFs, page images, recognized text, signatures, form entries, redaction search terms and receipt details are not sent to Erek Studio, to Firebase or to any other service, unless you share or export them yourself or use an Apple feature such as Visual Look Up (section 1.2). Device backups, such as iCloud Backup, can include the files Privio saves (<a href="#backups">section 4.5</a>).</li>
         <li><strong>The app does make some network connections of its own.</strong> Section 1 lists them: App Store or Google Play purchase checks each time the app starts, optional usage statistics through Google Analytics for Firebase (on by default for the free version, off by default with Pro; you can change it in Settings), Firebase technical diagnostics, and on Android, Google’s ML Kit diagnostics. None of them contains document content or file names.</li>
         <li><strong>No ads and no tracking.</strong> There is no advertising SDK, no access to your advertising identifier and no third-party crash-reporting SDK. On iOS, Privio asks Apple’s App Tracking Transparency question; once you answer, iOS does not show it again, and nothing in the app depends on your answer (<a href="#att">section 2</a> explains why it is asked).</li>
-        <li><strong>Privio keeps an audit log on your device</strong> — one entry per tool run, with file names, sizes, a partial file hash and the tool’s settings (section 4.3). You can turn it off, or keep file names and labels out of it. It does not leave the device unless you export it.</li>
+        <li><strong>Privio keeps an audit log on your device</strong> — one entry per tool run, with file names, sizes, a partial hash of the input file (from version 1.1.7, also the SHA-256 hash of the whole input and output files) and the tool’s settings (section 4.3). You can turn it off, or keep file names and labels out of it. Privio never uploads it; device backups can include it.</li>
       </ul>
     </div>
 
@@ -277,16 +277,17 @@
     <p>The temporary folder is inside the app’s sandbox, is not shown in the Files app and is not included in device backups. One exception on iOS: the PDF renderer writes each page image briefly to a <code>pdf_renderer_cache</code> folder inside the Documents folder and deletes it as soon as the image has been read; if the app stops at that moment, the image stays there — where the Files app shows it — until the next launch deletes it.</p>
 
     <h3 id="audit-log">4.3 Audit log</h3>
-    <p>Privio writes an audit-log entry automatically each time most tools finish a run. The log stays on your device; you can view it, export it as a CSV file or clear it in <strong>Settings → Privacy &amp; data → Audit log</strong>. The same screen has two switches, both on by default:</p>
+    <p>Privio writes an audit-log entry automatically each time most tools finish a run. The log is kept on your device and Privio never uploads it, but device backups can include it (<a href="#backups">section 4.5</a>). You can view it, export it as a CSV file or clear it in <strong>Settings → Privacy &amp; data → Audit log</strong>. The same screen has two switches, both on by default:</p>
     <ul>
       <li><strong>Keep an audit log.</strong> Turning it off stops new entries. Existing entries stay until you clear them.</li>
-      <li><strong>Include file names and labels.</strong> Turning it off keeps file names and free-text labels — the Bates prefix, signer name, watermark text and the names of merged files — out of new entries. Those entries keep only the tool, the time, file sizes, the partial file hash, and counts and settings that cannot identify a person or a document.</li>
+      <li><strong>Include file names and labels.</strong> Turning it off keeps file names and free-text labels — the Bates prefix, signer name, watermark text and the names of merged files — out of new entries. Those entries keep only the tool, the time, file sizes, the file hashes, and counts and settings that cannot identify a person or a document.</li>
     </ul>
     <p>With both switches on, each entry records:</p>
     <ul>
       <li>the date and time (UTC), the tool, and whether the run succeeded;</li>
       <li>the input file’s name and size, and the first 16 hexadecimal characters of a SHA-256 hash of the input file’s first 1&nbsp;MB;</li>
       <li>the output file’s name and size;</li>
+      <li>from version 1.1.7, the SHA-256 hash of the whole input file and of the whole output file (64 hexadecimal characters each; the <code>input_sha256</code> and <code>output_sha256</code> columns of the CSV export). Privio computes them in the background right after it writes the entry; if a file is gone by then, its hash stays empty;</li>
       <li>the tool’s settings and counts — for example the Bates prefix and start number, the signer name, the names of up to ten merged files, the watermark text, page ranges, the number of redaction search terms, matches and pages that could not be checked, the number of sensitive-data findings per category, the currency and category of a saved receipt, and page, character or field counts.</li>
     </ul>
     <p>The log never records redaction search terms, passwords (or their length) or the text of your documents. Password lengths recorded by earlier versions are removed from stored entries when the app starts. Entries are kept for 90 days, up to a maximum of 5,000 entries; older entries are removed when the app starts. The Compare and Bookmarks tools do not write entries.</p>
@@ -301,8 +302,8 @@
       <li><strong>Purchase state:</strong> a cached “Pro active” flag and the plan type, so the app knows your status before the store answers.</li>
     </ul>
 
-    <h3>4.5 Backups and device security</h3>
-    <p>The app’s Documents folder and its other app data are included in your device backups — iCloud Backup or a computer backup on iOS, Android’s device backup on Android — if you back up your device. Privio does not opt out of these backups. Both iOS and Android encrypt app storage on a device protected by a passcode or screen lock; set one.</p>
+    <h3 id="backups">4.5 Backups and device security</h3>
+    <p>If you back up your device, the app’s Documents folder and its other app data are included in its backups on iOS — iCloud Backup or a computer backup — and can be included in Android’s device backup. Privio does not opt out of these backups. On iPhone and iPad you can leave Privio out of iCloud Backup, and Advanced Data Protection makes iCloud Backup end-to-end encrypted; <a href="../support/#icloud-backup">Support</a> explains both. Both iOS and Android encrypt app storage on a device protected by a passcode or screen lock; set one.</p>
 
     <h2>5. Platform diagnostics</h2>
     <p>Apple and Google may separately provide crash, ANR (app not responding) or performance reports under their own operating-system and store settings — on iOS, <strong>Settings → Privacy &amp; Security → Analytics &amp; Improvements → Share with App Developers</strong>; on Android, Google’s usage and diagnostics setting. PDF Privio does not include Crashlytics, Firebase Performance or any other third-party crash-reporting SDK. These platform settings are separate from Privio’s usage-statistics switch.</p>
@@ -333,7 +334,7 @@
     <p>Otherwise this policy describes those versions as well. Updating to the current version removes the advertising SDK.</p>
 
     <h2>11. Changes and contact</h2>
-    <p>We update this policy when the app’s data practices change and note material changes in the app’s release notes. This version, for 1.1.5 and 1.1.6, describes these changes from the policy for versions 1.1.1 to 1.1.3: no advertising SDK; optional Firebase Analytics, off by default with Pro; audit-log switches; temporary files left behind by an interrupted operation being deleted when the app starts; and, in detail, the app’s network connections, its audit log and its temporary files. Version 1.1.6 adds two details: the export-completed statistic says whether the file carries the free version’s watermark (section 2), and a file saved or shared without Pro is a watermarked copy (section 4.1). Contact <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a> with privacy questions; we aim to respond within 30 days.</p>
+    <p>We update this policy when the app’s data practices change and note material changes in the app’s release notes. This version, for 1.1.5 to 1.1.7, describes these changes from the policy for versions 1.1.1 to 1.1.3: no advertising SDK; optional Firebase Analytics, off by default with Pro; audit-log switches; temporary files left behind by an interrupted operation being deleted when the app starts; and, in detail, the app’s network connections, its audit log and its temporary files. Version 1.1.6 adds two details: the export-completed statistic says whether the file carries the free version’s watermark (section 2), and a file saved or shared without Pro is a watermarked copy (section 4.1). Version 1.1.7 adds the SHA-256 hash of the whole input and output files to each audit-log entry (section 4.3). Contact <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a> with privacy questions; we aim to respond within 30 days.</p>
 
     <footer class="site">
       <p>© 2026 Erek Studio · <a href="../">Privio</a> · <a href="../terms/">Terms of Service</a></p>
