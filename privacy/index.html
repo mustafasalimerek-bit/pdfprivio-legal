@@ -282,7 +282,7 @@
       <li><strong>Keep an audit log.</strong> Turning it off stops new entries. Existing entries stay until you clear them.</li>
       <li><strong>Include file names and labels.</strong> Turning it off keeps file names and free-text labels — the Bates prefix, signer name, watermark text and the names of merged files — out of new entries. Those entries keep only the tool, the time, file sizes, the file hashes (the fingerprints stay with this switch off) and counts and settings that cannot identify a person or a document.</li>
     </ul>
-    <p>With both switches on, each entry records:</p>
+    <p>With both switches on, an entry records the following, where they apply:</p>
     <ul>
       <li>the date and time (UTC), the tool, and whether the run succeeded;</li>
       <li>the input file’s name and size, and the first 16 hexadecimal characters of a SHA-256 hash of the input file’s first 1&nbsp;MB;</li>
@@ -290,7 +290,7 @@
       <li>from version 1.1.7, the SHA-256 hash of the whole input file and of the whole output file (64 hexadecimal characters each; the <code>input_sha256</code> and <code>output_sha256</code> columns of the CSV export). Privio computes them in the background after it writes the entry, on a best-effort basis: a hash stays empty if its file is gone by then;</li>
       <li>the tool’s settings and counts — for example the Bates prefix and start number, the signer name, the names of up to ten merged files, the watermark text, page ranges, the number of redaction search terms, matches and pages that could not be checked, the number of sensitive-data findings per category, the currency and category of a saved receipt, and page, character or field counts.</li>
     </ul>
-    <p>A Merge entry has no input hash, and a Split entry with more than one range has no output hash. The output hash belongs to the file the tool made: a copy you save or share without Pro carries the PDF Privio watermark, so it is a different file with a different hash.</p>
+    <p>A Merge entry records no input file, and a Split entry with more than one range records no output file, so neither has a hash for that file. The output hash belongs to the file the tool made: a copy you save or share without Pro carries the PDF Privio watermark, so it is a different file with a different hash.</p>
     <p>The log never records redaction search terms, passwords (or their length) or the text of your documents. Password lengths recorded by earlier versions are removed from stored entries when the app starts. Entries are kept for 90 days, up to a maximum of 5,000 entries; older entries are removed when the app starts. The Compare and Bookmarks tools do not write entries.</p>
     <p>The audit log and the receipt ledger are stored as database files in the app’s Documents folder. On iOS that folder is visible in the Files app, so these files appear there too and can be copied like any other file.</p>
 
@@ -335,7 +335,7 @@
     <p>Otherwise this policy describes those versions as well. Updating to the current version removes the advertising SDK.</p>
 
     <h2>11. Changes and contact</h2>
-    <p>We update this policy when the app’s data practices change and note material changes in the app’s release notes. This version, for 1.1.5 to 1.1.7, describes these changes from the policy for versions 1.1.1 to 1.1.3: no advertising SDK; optional Firebase Analytics, off by default with Pro; audit-log switches; temporary files left behind by an interrupted operation being deleted when the app starts; and, in detail, the app’s network connections, its audit log and its temporary files. Version 1.1.6 adds two details: the export-completed statistic says whether the file carries the free version’s watermark (section 2), and a file saved or shared without Pro is a watermarked copy (section 4.1). Version 1.1.7 adds SHA-256 hashes of the whole input and output files to audit-log entries (section 4.3). Contact <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a> with privacy questions; we aim to respond within 30 days.</p>
+    <p>We update this policy when the app’s data practices change and note material changes in the app’s release notes. This version, for 1.1.5 to 1.1.7, describes these changes from the policy for versions 1.1.1 to 1.1.3: no advertising SDK; optional Firebase Analytics, off by default with Pro; audit-log switches; temporary files left behind by an interrupted operation being deleted when the app starts; and, in detail, the app’s network connections, its audit log and its temporary files. Version 1.1.6 adds two details: the export-completed statistic says whether the file carries the free version’s watermark (section 2), and a file saved or shared without Pro is a watermarked copy (section 4.1). Version 1.1.7 adds whole-file SHA-256 hashes, where available, for the input and output files an audit-log entry records (section 4.3). Contact <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a> with privacy questions; we aim to respond within 30 days.</p>
 
     <footer class="site">
       <p>© 2026 Erek Studio · <a href="../">Privio</a> · <a href="../terms/">Terms of Service</a></p>
