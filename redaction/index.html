@@ -6,7 +6,7 @@
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#0F766E" />
   <title>How Privio redacts · Privio</title>
-  <meta name="description" content="How PDF Privio's Redact tool works — finding terms in the text layer, burning them out of page images and rebuilding the PDF — with its known limitations and how to check a redacted file." />
+  <meta name="description" content="How Privio's Redact tool works — finding terms in the text layer, burning them out of page images and rebuilding the PDF — with its known limitations and how to check a redacted file." />
   <link rel="canonical" href="https://mustafasalimerek-bit.github.io/pdfprivio-legal/redaction/" />
   <style>
     :root {
@@ -219,8 +219,8 @@
     <h1>How Privio redacts</h1>
 
     <div class="meta">
-      <div><strong>Last updated:</strong> 2026-11-08</div>
-      <div><strong>Applies to:</strong> PDF Privio 1.1.5 and later, on iOS and Android</div>
+      <div><strong>Last updated:</strong> 2026-11-18</div>
+      <div><strong>Applies to:</strong> Privio 2.0 and later, and versions 1.1.5 to 1.1.7 (then called PDF Privio), on iOS and Android</div>
       <div><strong>Contact:</strong> <a href="mailto:mustafasalimerek@gmail.com">mustafasalimerek@gmail.com</a></div>
     </div>
 
@@ -231,6 +231,7 @@
         <li>It can only redact what it finds. Text inside images is not searched. Pages Privio could not check are listed on the result screen, and it asks you to confirm before you export; anything it could not check on them stays visible. The <a href="#limitations">known limitations</a> are listed below.</li>
         <li>Check every redacted file before you share it: <a href="#checking">how to check</a>.</li>
         <li>Privio’s redaction has not been audited or certified by an independent third party. This note describes the method as implemented in the app’s source code; it is not a test report.</li>
+        <li>This page covers the Redact tool for PDFs. Redact photo is a separate tool: you draw the boxes yourself on a photo or screenshot (<a href="../privacy/#photo-tools">privacy policy, section 4.7</a>).</li>
       </ul>
     </div>
 
@@ -246,7 +247,7 @@
       <li><strong>Rebuilding.</strong> Privio builds a brand-new PDF from the page images, with each page’s original size and rotation. The original file’s text layer, fonts, metadata, attachments, form fields, links, bookmarks and earlier revisions are not copied into it.</li>
       <li><strong>OCR-back (“Keep non-redacted text searchable”, on by default).</strong> Privio runs on-device text recognition — Apple Vision on iOS, Google ML Kit on Android — on each redacted page image and adds the recognised text as an invisible text layer over the image, so the remaining text can be searched and copied. The recognizer only sees the burned images, so the black boxes contribute no text. Rotated pages are left image-only, without an OCR-back layer, because their recognised text would land in the wrong place. With OCR-back off, the new PDF contains page images only and has no text layer at all.</li>
     </ol>
-    <p>Everything above runs on your device; no page image or text is uploaded. (On Android, ML Kit sends Google its own diagnostic metadata, described in the <a href="../privacy/#network">privacy policy</a>.) The free version and Pro run the same pipeline. Pro exports the result as it is. From version 1.1.6, an export without Pro adds the PDF Privio watermark on top of every page, after redaction (see the last item under Known limitations); in 1.1.5, exporting requires Pro. The page images are written to the app’s private temporary folder during the run and deleted when it ends, whether it finishes, fails or is cancelled; if the app crashes or is force-quit mid-run, they are deleted the next time the app starts. The on-device audit log records the number of search terms, matches, affected pages and unchecked pages — never the terms themselves.</p>
+    <p>Everything above runs on your device; no page image or text is uploaded. (On Android, ML Kit sends Google its own diagnostic metadata, described in the <a href="../privacy/#network">privacy policy</a>.) The free version and Pro run the same pipeline. Pro exports the result as it is. In version 2.0, the first file you export without Pro, from any tool, is also exported as it is; every later export without Pro adds the Privio watermark on top of every page, after redaction (see the last item under Known limitations). In versions 1.1.6 and 1.1.7, every export without Pro adds that watermark, which reads “PDF Privio” there; in 1.1.5, exporting requires Pro. The page images are written to the app’s private temporary folder during the run and deleted when it ends, whether it finishes, fails or is cancelled; if the app crashes or is force-quit mid-run, they are deleted the next time the app starts. The on-device audit log records the number of search terms, matches, affected pages and unchecked pages — never the terms themselves.</p>
 
     <h2 id="limitations">2. Known limitations</h2>
     <ul>
@@ -262,7 +263,7 @@
                   <li><strong>Rotated pages are not searchable in the output.</strong> With OCR-back on, rotated pages get no recognised text, so searching the redacted file finds nothing on them. Check rotated pages by eye.</li>
       <li><strong>OCR-back languages.</strong> Text recognition for OCR-back is set up for English and Turkish; text in other languages may be recognised less accurately. This affects only searching the output, not what was redacted.</li>
       <li><strong>The output is an image-based PDF.</strong> It is usually larger than the original. Its only selectable text is the OCR-back layer, which can contain recognition errors (and, on a free copy, the watermark). Form fields, links and bookmarks no longer work.</li>
-      <li data-release="1.1.6"><strong>A free copy carries a watermark.</strong> From version 1.1.6, a redacted file exported without Pro gets the PDF Privio watermark after redaction: a large diagonal “PDF Privio” in black at 28% opacity and a footer line on a mostly opaque white strip, about 8 to 12 pt tall, at the bottom centre of each page. The watermark’s words are text, so they can be selected and found by a search. The strip hides what lies under it without removing it from the file, so check the bottom edge of each page in the original as well. A Pro export has no watermark.</li>
+      <li data-release="2.0"><strong>A free copy carries a watermark.</strong> After your first free export from any tool, a redacted file exported without Pro gets the Privio watermark after redaction: a large diagonal “Privio” in black at 28% opacity and a footer line on a mostly opaque white strip, about 8 to 12 pt tall, at the bottom centre of each page. (In versions 1.1.6 and 1.1.7 it reads “PDF Privio” and is added to every export without Pro.) The watermark’s words are text, so they can be selected and found by a search. The strip hides what lies under it without removing it from the file, so check the bottom edge of each page in the original as well. A Pro export has no watermark.</li>
     </ul>
 
     <h2 id="checking">3. How to check a redacted file</h2>
@@ -290,6 +291,12 @@
     <h2 id="changes-116">5. Changes in 1.1.6</h2>
     <ul>
       <li data-release="1.1.6">A redacted file can be exported without Pro; it then carries the PDF Privio watermark, added after redaction (see Known limitations). In 1.1.5, exporting a redacted file requires Pro.</li>
+    </ul>
+
+    <h2 id="changes-200">6. Changes in 2.0</h2>
+    <ul>
+      <li data-release="2.0">The app is now called Privio. The redaction method on this page has not changed.</li>
+      <li data-release="2.0">The first file you export without Pro, from any tool, has no watermark. Later exports without Pro carry the Privio watermark.</li>
     </ul>
 
     <footer class="site">

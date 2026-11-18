@@ -244,7 +244,7 @@
 
     <details>
       <summary>What is free, and what does Pro add?</summary>
-      <p>Every tool opens and runs free on your own document, with no account and no trial. Without Pro you can save or share the PDFs Privio makes, with a PDF Privio watermark on every page: a large diagonal "PDF Privio" and a footer line. Pro removes the watermark, lets you copy or export text results (Extract text, Compare PDFs, Find sensitive data and Summarize PDF) and opens batch processing and the receipt scanner. While you are still on the result screen, <strong>Remove watermark</strong> lets you buy Pro, and the clean file then replaces the watermarked copy in Privio's folder. Watermarked files from earlier results, and copies you have already shared or saved outside Privio, keep the watermark. There are no ads, free or Pro. In version 1.1.5, saving, sharing or exporting any result requires Pro.</p>
+      <p>With no account and no trial, you can make three estimates, invoices, proposals or work orders (every kind counts toward the three, and deleting one does not give it back) and use clients, saved items, time tracking, photos on documents and backups. Every PDF tool opens and runs free on your own document, except batch processing and the receipt scanner. The first file you export is clean. After that you can save or share the PDFs Privio makes with a Privio watermark on every page: a large diagonal "Privio" and a footer line. Redact photo adds a "Created with Privio" band under the picture instead, Signature maker needs Pro after your first free export, and Image to Text reads one photo at a time. Pro gives unlimited documents, your logo, three document styles, client signatures and time billing, removes the watermark and the Privio footer, lets you copy or export text results (Extract text, Compare PDFs, Find sensitive data and Summarize PDF) and opens batch processing and the receipt scanner. While you are still on the result screen, <strong>Remove watermark</strong> lets you buy Pro, and the clean file then replaces the watermarked copy in Privio's folder. Watermarked files from earlier results, and copies you have already shared or saved outside Privio, keep the watermark. There are no ads, free or Pro. In versions 1.1.6 and 1.1.7 the watermark reads "PDF Privio". In version 1.1.5, saving, sharing or exporting any result requires Pro.</p>
     </details>
 
     <details>
@@ -254,7 +254,32 @@
 
     <details>
       <summary>Where are my scanned and edited PDFs saved?</summary>
-      <p>When you save, share or export a result, it goes to Privio's own folder: on iPhone and iPad, that is the Files app → <strong>On My iPhone → Privio</strong> (or On My iPad); on Android, the app's private storage. Without Pro, the copy with the watermark goes there, and the result without it stays in a hidden staging folder with any results you have not saved; those are deleted at the next app start once they are more than a day old. If you buy Pro on the same result screen, the clean file replaces the watermarked copy. The folder is not in iCloud Drive, but like other app data it is included in your iPhone or iPad backups (iCloud Backup or a computer backup), and Android's device backup can include it, if you back up your device; to keep it out of iCloud Backup, see the next question. Both iOS and Android encrypt app storage when the device has a passcode or screen lock. Details: <a href="../privacy/#storage">Privacy Policy, section 4</a>.</p>
+      <p>When you save, share or export a result, it goes to Privio's own folder: on iPhone and iPad, that is the Files app → <strong>On My iPhone → Privio</strong> (or On My iPad); on Android, the app's private storage. After your first free export, the copy made without Pro carries the watermark, and the result without it stays in a hidden staging folder with any results you have not saved; those are deleted at the next app start once they are more than a day old. If you buy Pro on the same result screen, the clean file replaces the watermarked copy. The folder is not in iCloud Drive, but like other app data it is included in your iPhone or iPad backups (iCloud Backup or a computer backup), and Android's device backup can include it, if you back up your device; to keep it out of iCloud Backup, see the next question. Both iOS and Android encrypt app storage when the device has a passcode or screen lock. Details: <a href="../privacy/#storage">Privacy Policy, section 4</a>.</p>
+    </details>
+
+    <details id="business-data">
+      <summary>Where are my clients, estimates and invoices stored?</summary>
+      <p>On your device, in Privio's own storage. Privio never uploads your documents and has no account, so Privio keeps no online copy of them. Clients, saved items, documents, recorded payments, client signatures and time entries are kept in database files in Privio's folder, which the Files app shows on iPhone and iPad; Privio does not add its own encryption to these files. Your logo and the photos on documents are in a private folder. Device backups can include all of it. Details: <a href="../privacy/#business-data">Privacy Policy, section 4.6</a>.</p>
+    </details>
+
+    <details id="backup">
+      <summary>How do I back up my business data or move it to a new phone?</summary>
+      <p>In the Documents tab, tap <strong>⋯ → Backup → Export backup</strong> and choose where the file goes: Files, a cloud drive, or an email to yourself. On the new phone, open the same screen, tap <strong>Restore from backup</strong> and pick the file. Records are merged, and the newer version of each record is kept. The file contains all your business data, including tax IDs, payment instructions, client signatures and photos, and it is not encrypted, so keep it somewhere you trust. It does not contain PDF tool results, the audit log or the expense ledger.</p>
+    </details>
+
+    <details id="delete-business-data">
+      <summary>How do I delete my business data?</summary>
+      <p>Delete a document, client, saved item or time entry from its own screen. Documents keep their own copy of a client's details, so delete those documents too if you want the details gone. Deleting Privio removes the business data from the device; on iOS, the count of documents you have created stays in the Keychain so that the free limit is not reset. Backup files you saved, copies you shared and device backups are separate: delete them where they are kept. Details: <a href="../privacy/#delete-business-data">Privacy Policy, section 4.6</a>.</p>
+    </details>
+
+    <details id="payments">
+      <summary>Does Privio take payments from my clients?</summary>
+      <p>No. Privio does not process payments. The payment instructions on a document are text you write, and a payment you record is only a note on your device.</p>
+    </details>
+
+    <details id="client-signature">
+      <summary>Is a client signature in Privio a certified e-signature?</summary>
+      <p>No. It is a drawn signature with a name and a time, and the app says so on the document screen. Whether it is enough for your purpose depends on the law that applies and on the other party; ask a lawyer if it matters.</p>
     </details>
 
     <details id="icloud-backup">
@@ -270,7 +295,7 @@
 
     <details>
       <summary>Does Privio upload my PDFs anywhere?</summary>
-      <p>No. Your documents are processed on your device, and the app has no feature that uploads document content. The app does make a few network connections of its own: App Store or Google Play purchase checks when it starts, optional usage statistics through Firebase Analytics (on by default for the free version, off by default with Pro; change it in Settings → Privacy &amp; data), Firebase technical diagnostics, and on Android, Google ML Kit library diagnostics. None of them contains your documents or file names. There are no ads, advertising identifiers or third-party crash-reporting SDKs. The <a href="../privacy/#network">Privacy Policy</a> lists them.</p>
+      <p>No. Privio never uploads your documents. They are processed on your device, and the app has no feature that uploads document content or business data; files you share or back up go where you send them, and device backups can include app data. The app does make a few network connections of its own: App Store or Google Play purchase checks when it starts, optional usage statistics through Firebase Analytics (on by default for the free version, off by default with Pro; change it in Settings → Privacy &amp; data), Firebase technical diagnostics, and on Android, Google ML Kit library diagnostics. None of them contains your documents, file names, client names or the amounts on your documents. There are no ads, advertising identifiers or third-party crash-reporting SDKs. The <a href="../privacy/#network">Privacy Policy</a> lists them.</p>
     </details>
 
     <details id="password">
@@ -285,7 +310,7 @@
 
     <details>
       <summary>The scanner is asking for camera access. Why?</summary>
-      <p>On iPhone and iPad, Privio uses Apple's VisionKit document scanner, which needs the camera at the moment you tap "Scan to PDF" to capture pages. The pages are processed on the device and the finished PDF is saved in Privio's storage; nothing is uploaded. If you decline the permission, the scanner is disabled but every other tool still works — you can import PDFs and images through the Files app or the share sheet instead. On Android, the scanner is Google's ML Kit document scanner, which runs inside Google Play services, so Privio itself does not ask for camera access.</p>
+      <p>On iPhone and iPad, Privio uses Apple's VisionKit document scanner, which needs the camera at the moment you start a scan (Scan to PDF, or Scan with the camera in Image to Text) to capture pages. The pages are processed on the device. A scan made with Scan to PDF is saved in Privio's storage, and a scan made for Image to Text is deleted after its text has been read; nothing is uploaded. If you decline the permission, the scanner is disabled but every other tool still works — you can import PDFs and images through the Files app or the share sheet instead. On Android, the scanner is Google's ML Kit document scanner, which runs inside Google Play services, so Privio itself does not ask for camera access.</p>
     </details>
 
     <details>
@@ -320,11 +345,11 @@
     </details>
 
     <h2>Ratings</h2>
-    <p>If Privio is genuinely helping you, leaving a quick rating on the App Store or Google Play is the single most valuable thing you can do for a solo indie developer — it is how new users discover the app. If you have Pro, the store's rating prompt may appear after a few successful runs, at most once every 90 days; you can also leave a review any time from the store listing.</p>
+    <p>If Privio is genuinely helping you, leaving a quick rating on the App Store or Google Play is the single most valuable thing you can do for a solo indie developer — it is how new users discover the app. The store's rating prompt may appear after a few successful results, whether or not you have Pro, at most once every 90 days; you can also leave a review any time from the store listing.</p>
 
     <h2>Legal</h2>
     <ul>
-      <li><a href="../privacy/">Privacy Policy</a> — what Privio stores on your device, the network connections the app makes, the on-device audit log and your choices.</li>
+      <li><a href="../privacy/">Privacy Policy</a> — what Privio stores on your device, including your business data and backups, the network connections the app makes, the on-device audit log and your choices.</li>
       <li><a href="../redaction/">How Privio redacts</a> — the redaction method, its known limitations and how to check a redacted file.</li>
       <li><a href="../terms/">Terms of Service</a> — license, paid features, acceptable use, ESIGN notice, liability cap.</li>
     </ul>
